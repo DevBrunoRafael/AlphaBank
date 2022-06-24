@@ -10,29 +10,21 @@ public class savingsAccount extends Account implements Operations {
 
     private double juros = 0;
 
+//   constructor ================================================================================================
     public savingsAccount(Client client) {
         super(GenerateId.getInstance().gerarId(0), client);
     }
+//  =============================================================================================================
+
+
+//   operations =================================================================================================
 
     @Override
-    public void deposit() {
+    public void generateExtract()throws Exception {
         setExtrato(new Statement());
     }
+//  =============================================================================================================
 
-    @Override
-    public void withdraw() {
-        setExtrato(new Statement());
-    }
-
-    @Override
-    public void transfer() {
-        setExtrato(new Statement());
-    }
-
-    @Override
-    public void generateExtract() {
-        setExtrato(new Statement());
-    }
 
 
     public double getJuros() {

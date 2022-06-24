@@ -1,12 +1,12 @@
 package App.Entities.Accounts;
 
 public interface Operations {
-    void deposit();
+    void deposit(double valor) throws Exception;
 
-    void withdraw();
+    void withdraw(double valor) throws Exception;
 
-    void transfer();
+    void transfer(Account dest, double valor) throws Exception;
 
-    void generateExtract();
+    void generateExtract() throws Exception;
 
 }

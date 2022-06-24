@@ -10,14 +10,57 @@ public abstract class Account {
 
     protected String numAccount = null; // a definir...
     protected Client client;
-    protected double saldo = 0; // valor inicial...
+    protected double saldo; // valor inicial...
     protected Statement extrato;
 
+
+//   constructor ================================================================================================
     public Account(String numAccount, Client client) {
         this.numAccount = numAccount;
         this.client = client;
     }
+//  =============================================================================================================
 
+
+//   operations ================================================================================================
+
+    public void deposit(double valor) throws Exception {
+        saldo += valor;
+
+        setExtrato(new Statement());
+    }
+
+
+    public void withdraw(double valor) throws Exception {
+        if(valor <= saldo){
+            saldo -= valor;
+        } else {
+            throw new Exception("Erro: saldo insuficientes para saque.");
+        }
+
+        setExtrato(new Statement());
+    }
+
+
+    public void transfer(Account dest, double valor) throws Exception{
+        if(saldo >= valor){
+            saldo = saldo - valor;
+            dest.deposit(valor);
+        } else {
+            throw new Exception("Erro: saldo e limite insuficientes para transferência.");
+        }
+
+        setExtrato(new Statement());
+    }
+
+
+    public void generateExtract() throws Exception {
+        setExtrato(new Statement());
+    }
+//   =========================================================================================================
+
+
+//   getters and setters =====================================================================================
     public String getNumAccount() {
         return numAccount;
     }
@@ -45,6 +88,8 @@ public abstract class Account {
     public void setExtrato(Statement extrato) {
         this.extrato = extrato;
     }
+//  ==========================================================================================================
+
 
 
 
