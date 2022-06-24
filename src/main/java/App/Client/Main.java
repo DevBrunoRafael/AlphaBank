@@ -2,44 +2,29 @@ package App.Client;
 
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.AccountTypes.currentAccount;
+import App.Entities.Accounts.AccountTypes.savingsAccount;
 import App.Entities.Customer.Client;
 
-import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
 
 
+        Account account1 = new currentAccount(
+                new Client("Bruno","Rafael","20/09/200","09242681580")
+        );
 
-        boolean rodando = true;
-        while (rodando){
+        Account account2 = new currentAccount(
+                new Client("Bruno","Rafael","20/04/1999","09242681580")
+        );
 
 
-            System.out.println("Abrir Conta");
-            String op = input.nextLine();
-            switch (op) {
-                case "1" -> {
-                    System.out.print("Informe o nome: ");
-                    String nome = input.nextLine();
-                    System.out.print("Informe o sobrenome: ");
-                    String sobrenome = input.nextLine();
-                    System.out.print("Informe a idade: ");
-                    int idade = input.nextInt();
-                    input.next();
-                    System.out.print("Informe o cpf: ");
-                    String cpf = input.nextLine();
+        System.out.println(account1);
+        System.out.println("");
+        System.out.println(account2);
+        System.out.println("");
 
-                    Account account = new currentAccount(new Client(nome,sobrenome,idade,cpf));
-                    System.out.println(account);
 
-                }
-                case "2" -> {
-                    rodando = false;
-                }
-                default -> System.out.println("Opção inválida");
-            }
-        }
 
 
     }

@@ -4,13 +4,14 @@ import App.Entities.Accounts.Account;
 import App.Entities.Accounts.BankStatement.Statement;
 import App.Entities.Accounts.Operations;
 import App.Entities.Customer.Client;
+import App.Support.GenerateId;
 
 public class currentAccount extends Account implements Operations {
 
     private double Limite = 0; // a definir
 
     public currentAccount(Client client) {
-        super(client);
+        super(GenerateId.getInstance().gerarId(1), client);
     }
 
     @Override
@@ -34,10 +35,10 @@ public class currentAccount extends Account implements Operations {
     }
 
 
+
     public double getLimite() {
         return Limite;
     }
-
     public void setLimite(double limite) {
         Limite = limite;
     }
