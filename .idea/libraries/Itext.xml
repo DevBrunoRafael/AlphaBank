@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Itext">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../zProgFile/Itext" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../../../zProgFile/Itext" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../zProgFile/Itext" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../zProgFile/Itext" recursive="false" type="SOURCES" />
+  </library>
+</component>
