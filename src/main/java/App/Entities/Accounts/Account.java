@@ -28,7 +28,15 @@ public abstract class Account {
         saldo += valor;
 
         Integer tpo = TypeOperations.DEPOSIT.getOperation();
-        setExtrato(new ExtractLog());
+        ExtractLog log = new ExtractLog(
+                this.numAccount,
+                this.client.getNome(),
+                valor,
+                tpo
+        );
+//        setExtrato(log);
+        System.out.println(log.LogInformation());
+
     }
 
 

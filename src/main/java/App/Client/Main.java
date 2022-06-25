@@ -20,20 +20,15 @@ public class Main {
                 new Client("Rafael","Santos","20/04/1999","09994578032")
         );
 
-        account1.setSaldo(2000);
-        ((currentAccount) account1).setLimite(1000);
-        account2.setSaldo(200);
+        account1.deposit(200);
 
-        account1.transfer(account2, 2300);
-        account1.withdraw(650);
-        account1.withdraw(650);
-        System.out.println(((currentAccount) account1).getLimite());
 
 
         System.out.println(account1);
         System.out.println("");
         System.out.println(account2);
         System.out.println("");
+
 
 
 
