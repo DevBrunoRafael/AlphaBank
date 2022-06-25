@@ -4,14 +4,16 @@ import App.Entities.Accounts.BankStatement.ExtractLog;
 import App.Entities.Customer.Client;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public abstract class Account {
 
-    protected String numAccount = null; // a definir...
+    protected String numAccount;
     protected Client client;
-    protected double saldo; // valor inicial...
-    protected ExtractLog extrato; // arrayList
+    protected double balance; // inicia zerado
+    protected List<ExtractLog> histLogs = new ArrayList<>();
 
 
 //   constructor ================================================================================================
@@ -23,53 +25,45 @@ public abstract class Account {
 
 
 //   operations ================================================================================================
-
-    public void deposit(double valor) throws Exception {
-        saldo += valor;
+    public void deposit(double value) throws Exception {
+        balance += value;
 
         TypeOperations type = TypeOperations.DEPOSIT;
         ExtractLog log = new ExtractLog(
-            this.numAccount, this.client.getNome(), valor, type
+            this.numAccount, this.client.getName(), value, type
         );
 
-        // ADD ARRAYLIST FOR CLASS
-
-        System.out.println(log);
-
+        histLogs.add(log);
     }
 
-
-    public void withdraw(double valor) throws Exception {
-        if(valor <= saldo){
-            saldo -= valor;
+    public void withdraw(double value) throws Exception {
+        if(value <= balance){
+            this.subtractAccountValue(value);
 
             TypeOperations type = TypeOperations.WITHDRAW;
             ExtractLog log = new ExtractLog(
-                    this.numAccount, this.client.getNome(), valor, type
+                    this.numAccount, this.client.getName(), value, type
             );
 
-            // ADD ARRAYLIST FOR CLASS
+            histLogs.add(log);
 
         } else {
             throw new Exception("Erro: saldo insuficientes para saque.");
         }
     }
 
+    public void transfer(Account receiver, double value) throws Exception{
+        if(balance >= value){
+            this.subtractAccountValue(value);
 
-    public void transfer(Account dest, double valor) throws Exception{
-        if(saldo >= valor){
-            saldo -= valor;
-
-            dest.setSaldoTransfer(this.client.getNome(), valor);
+            receiver.setSaldoTransfer(this.client.getName(), value);
 
             TypeOperations type = TypeOperations.TRANSFER_SENT;
             ExtractLog log = new ExtractLog(
-                    this.numAccount, this.client.getNome(), valor, type, dest.getClient().getNome()
+                    this.numAccount, this.client.getName(), value, type, receiver.getClient().getName()
             );
 
-            System.out.println(log);
-
-            // ADD ARRAYLIST FOR CLASS
+            histLogs.add(log);
 
         } else {
             throw new Exception("Erro: saldo e limite insuficientes para transferência.");
@@ -78,7 +72,10 @@ public abstract class Account {
 
 
     public void generateExtract() throws Exception {
-        //implementar
+        List<ExtractLog> hist = histLogs;
+        hist.forEach(System.out::println);
+
+        // alterar posteriormente
     }
 //   =========================================================================================================
 
@@ -90,14 +87,9 @@ public abstract class Account {
     public Client getClient() {
         return client;
     }
-    public double getSaldo() {
-        return saldo;
+    public double getBalance() {
+        return balance;
     }
-    public ExtractLog getExtrato() {
-        return extrato;
-    }
-
-
 
     public void setNumAccount(String numAccount) {
         this.numAccount = numAccount;
@@ -105,26 +97,27 @@ public abstract class Account {
     public void setClient(Client client) {
         this.client = client;
     }
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
-    public void setExtrato(ExtractLog extrato) {
-        this.extrato = extrato;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 //  ===========================================================================================================
 
 
 //  auxiliary method ==========================================================================================
-    public void setSaldoTransfer(String rem, double valor){
-        this.saldo += valor;
+    public void setSaldoTransfer(String sender, double valor){
+        this.balance += valor;
 
         TypeOperations type = TypeOperations.TRANSFER_RECEIVED;
         ExtractLog log = new ExtractLog(
-                this.numAccount, this.client.getNome(), valor, type, rem
+                this.numAccount, this.client.getName(), valor, type, sender
         );
 
         System.out.println(log);
     }
+
+    protected void subtractAccountValue(double value){
+        balance -= value;
+    };
 //  ===========================================================================================================
 
 
@@ -135,7 +128,7 @@ public abstract class Account {
         return "\nCliente" + this.client.toString() +
                 "\n{ "+
                 "\n\tN° Conta: " + this.numAccount +
-                "\n\tSaldo: " + NumberFormat.getCurrencyInstance(ptBr).format(this.saldo) +
+                "\n\tSaldo: " + NumberFormat.getCurrencyInstance(ptBr).format(this.balance) +
                 "\n} ";
     }
 }

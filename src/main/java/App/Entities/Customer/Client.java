@@ -2,41 +2,39 @@ package App.Entities.Customer;
 
 public class Client {
 
-    private String nome;
-    private String sobrenome;
-    private String dataDeNasc;
+    private String name;
+    private String lastName;
+    private String birthDate; // implementar lógica de calc
     private String cpf;
 
-    public Client(String nome, String sobrenome, String dataDeNasc, String cpf) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.dataDeNasc = dataDeNasc;
+    public Client(String name, String lastName, String birthDate, String cpf) {
+        this.name = name;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
         this.cpf = cpf;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
-    public String getSobrenome() {
-        return sobrenome;
+    public String getLastName() {
+        return lastName;
     }
-    public String getDataDeNasc() {
-        return dataDeNasc;
+    public String getBirthDate() {
+        return birthDate;
     }
     public String getCpf() {
         return cpf;
     }
 
-
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
-    public void setDataDeNasc(String dataDeNasc) {
-        this.dataDeNasc = dataDeNasc;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
     public void setCpf(String cpf) {
         this.cpf = cpf;
@@ -45,9 +43,9 @@ public class Client {
 
     @Override
     public String toString() {
-        return "\nNome: " + this.nome +
-                "\nSobrenome: " + this.sobrenome +
-                "\nDt Nascimento: " + this.dataDeNasc +
+        return "\nNome: " + this.name +
+                "\nSobrenome: " + this.lastName +
+                "\nDt Nascimento: " + this.birthDate +
                 "\nCPF: " + this.cpf;
     }
 }

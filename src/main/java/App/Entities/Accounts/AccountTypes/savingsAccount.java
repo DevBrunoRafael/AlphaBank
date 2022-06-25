@@ -1,14 +1,13 @@
 package App.Entities.Accounts.AccountTypes;
 
 import App.Entities.Accounts.Account;
-import App.Entities.Accounts.BankStatement.ExtractLog;
 import App.Entities.Accounts.Operations;
 import App.Entities.Customer.Client;
 import App.Support.GenerateId;
 
 public class savingsAccount extends Account implements Operations {
 
-    private double juros = 0;
+    private double interest = 0;
 
 //   constructor ================================================================================================
     public savingsAccount(Client client) {
@@ -18,23 +17,22 @@ public class savingsAccount extends Account implements Operations {
 
 
 //   operations =================================================================================================
-
     public void earnInterest(){
-        // implementar
-    }
-
-    @Override
-    public void generateExtract()throws Exception {
         // implementar
     }
 //  =============================================================================================================
 
 
+//  getters and setters =========================================================================================
+    public double getInterest() {
+        return interest;
+    }
+    public void setInterest(double interest) {
+        this.interest = interest;
+    }
+//  =============================================================================================================
 
-    public double getJuros() {
-        return juros;
-    }
-    public void setJuros(double juros) {
-        this.juros = juros;
-    }
+
+
+
 }
