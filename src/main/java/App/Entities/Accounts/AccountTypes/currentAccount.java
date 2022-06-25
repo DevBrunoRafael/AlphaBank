@@ -24,40 +24,63 @@ public class currentAccount extends Account implements Operations {
     public void withdraw(double valor)throws Exception {
         if(valor <= saldo){
             saldo -= valor;
+
+            TypeOperations type = TypeOperations.WITHDRAW;
+            ExtractLog log = new ExtractLog(
+                    this.numAccount, this.client.getNome(), valor, type
+            );
+
         } else if(valor <= (saldo + limite)){
             double valueExceeded = valor - saldo;
             this.saldo = 0;
             limite = limite - valueExceeded;
+
+            TypeOperations type = TypeOperations.WITHDRAW;
+            ExtractLog log = new ExtractLog(
+                    this.numAccount, this.client.getNome(), valor, type
+            );
+
         } else {
             throw new Exception("Erro: saldo e limite insuficientes para saque.");
         }
 
-        Integer tpo = TypeOperations.WITHDRAW.getOperation();
-        setExtrato(new ExtractLog());
+        // ADD ARRAYLIST FOR CLASS
     }
 
     @Override
     public void transfer(Account dest, double valor)throws Exception {
         if(valor <= saldo) {
-            saldo = saldo - valor;
-            dest.deposit(valor);
+            saldo -= valor;
+            dest.setSaldoTransfer(this.client.getNome(), valor);
+
+            TypeOperations type = TypeOperations.TRANSFER_SENT;
+            ExtractLog log = new ExtractLog(
+                    this.numAccount, this.client.getNome(), valor, type, dest.getClient().getNome()
+            );
+
+            // ADD ARRAYLIST FOR CLASS
         }
         else if(valor <= (saldo + limite)){
             double quantiaExcedida = valor - saldo;
             this.saldo = 0;
             limite = limite - quantiaExcedida;
-            dest.deposit(valor);
+            dest.setSaldoTransfer(this.client.getNome(), valor);
+
+            TypeOperations type = TypeOperations.TRANSFER_SENT;
+            ExtractLog log = new ExtractLog(
+                    this.numAccount, this.client.getNome(), valor, type, dest.getClient().getNome()
+            );
+
+            // ADD ARRAYLIST FOR CLASS
+
         } else {
             throw new Exception("Erro: saldo e limite insuficientes para transferência.");
         }
-
-        Integer tpo = TypeOperations.TRANSFER.getOperation();
-        setExtrato(new ExtractLog());
     }
 
     @Override
     public void generateExtract()throws Exception {
-        setExtrato(new ExtractLog());
+        //implementar
     }
 //  =============================================================================================================
 

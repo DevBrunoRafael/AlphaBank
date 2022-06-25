@@ -1,17 +1,18 @@
 package App.Entities.Accounts;
 
 public enum TypeOperations {
-    DEPOSIT(1),
-    WITHDRAW(2),
-    TRANSFER(3);
+    DEPOSIT("Depósito"),
+    WITHDRAW("Saque"),
+    TRANSFER_SENT("Transferência enviada"),
+    TRANSFER_RECEIVED("Transferência recebida");
 
-    private final Integer operation;
+    private final String operation;
 
-    TypeOperations(int operation){
+    TypeOperations(String operation){
         this.operation = operation;
     }
 
-    public Integer getOperation() {
+    public String getOperation() {
         return operation;
     }
 }

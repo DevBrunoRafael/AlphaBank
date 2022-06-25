@@ -25,7 +25,7 @@ public class savingsAccount extends Account implements Operations {
 
     @Override
     public void generateExtract()throws Exception {
-        setExtrato(new ExtractLog());
+        // implementar
     }
 //  =============================================================================================================
 
