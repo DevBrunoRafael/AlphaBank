@@ -112,7 +112,7 @@ public abstract class Account {
                 this.numAccount, this.client.getName(), valor, type, sender
         );
 
-        System.out.println(log);
+        histLogs.add(log);
     }
 
     protected void subtractAccountValue(double value){
