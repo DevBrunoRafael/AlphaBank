@@ -7,6 +7,4 @@ public interface Operations {
 
     void transfer(Account dest, double valor) throws Exception;
 
-    void generateExtract() throws Exception;
-
 }

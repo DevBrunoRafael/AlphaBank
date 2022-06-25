@@ -1,6 +1,6 @@
 package App.Entities.Accounts;
 
-import App.Entities.Accounts.BankStatement.Statement;
+import App.Entities.Accounts.BankStatement.ExtractLog;
 import App.Entities.Customer.Client;
 
 import java.text.NumberFormat;
@@ -11,7 +11,7 @@ public abstract class Account {
     protected String numAccount = null; // a definir...
     protected Client client;
     protected double saldo; // valor inicial...
-    protected Statement extrato;
+    protected ExtractLog extrato;
 
 
 //   constructor ================================================================================================
@@ -27,7 +27,8 @@ public abstract class Account {
     public void deposit(double valor) throws Exception {
         saldo += valor;
 
-        setExtrato(new Statement());
+        Integer tpo = TypeOperations.DEPOSIT.getOperation();
+        setExtrato(new ExtractLog());
     }
 
 
@@ -38,7 +39,8 @@ public abstract class Account {
             throw new Exception("Erro: saldo insuficientes para saque.");
         }
 
-        setExtrato(new Statement());
+        Integer tpo = TypeOperations.WITHDRAW.getOperation();
+        setExtrato(new ExtractLog());
     }
 
 
@@ -50,12 +52,13 @@ public abstract class Account {
             throw new Exception("Erro: saldo e limite insuficientes para transferência.");
         }
 
-        setExtrato(new Statement());
+        Integer tpo = TypeOperations.TRANSFER.getOperation();
+        setExtrato(new ExtractLog());
     }
 
 
     public void generateExtract() throws Exception {
-        setExtrato(new Statement());
+        setExtrato(new ExtractLog());
     }
 //   =========================================================================================================
 
@@ -70,7 +73,7 @@ public abstract class Account {
     public double getSaldo() {
         return saldo;
     }
-    public Statement getExtrato() {
+    public ExtractLog getExtrato() {
         return extrato;
     }
 
@@ -85,7 +88,7 @@ public abstract class Account {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-    public void setExtrato(Statement extrato) {
+    public void setExtrato(ExtractLog extrato) {
         this.extrato = extrato;
     }
 //  ==========================================================================================================

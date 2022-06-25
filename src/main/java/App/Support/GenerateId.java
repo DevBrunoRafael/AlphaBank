@@ -24,11 +24,9 @@ public class GenerateId {
             text.append(random.nextInt(10));
         }
 
-        if(typeAccount == 0){ // savings
-            text.append("-03");
-        }
-        if(typeAccount == 1){ // currents
-            text.append("-05");
+        switch (typeAccount){
+            case 0 -> text.append("-03"); // saving
+            case 1 -> text.append("-05");
         }
 
         return text.toString();

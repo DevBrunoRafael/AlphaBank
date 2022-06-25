@@ -1,8 +1,9 @@
 package App.Entities.Accounts.AccountTypes;
 
 import App.Entities.Accounts.Account;
-import App.Entities.Accounts.BankStatement.Statement;
+import App.Entities.Accounts.BankStatement.ExtractLog;
 import App.Entities.Accounts.Operations;
+import App.Entities.Accounts.TypeOperations;
 import App.Entities.Customer.Client;
 import App.Support.GenerateId;
 
@@ -31,7 +32,8 @@ public class currentAccount extends Account implements Operations {
             throw new Exception("Erro: saldo e limite insuficientes para saque.");
         }
 
-        setExtrato(new Statement());
+        Integer tpo = TypeOperations.WITHDRAW.getOperation();
+        setExtrato(new ExtractLog());
     }
 
     @Override
@@ -49,12 +51,13 @@ public class currentAccount extends Account implements Operations {
             throw new Exception("Erro: saldo e limite insuficientes para transferência.");
         }
 
-        setExtrato(new Statement());
+        Integer tpo = TypeOperations.TRANSFER.getOperation();
+        setExtrato(new ExtractLog());
     }
 
     @Override
     public void generateExtract()throws Exception {
-        setExtrato(new Statement());
+        setExtrato(new ExtractLog());
     }
 //  =============================================================================================================
 
@@ -65,7 +68,7 @@ public class currentAccount extends Account implements Operations {
         return limite;
     }
     public void setLimite(double limite) {
-        limite = limite;
+        this.limite = limite;
     }
-}
 //  =============================================================================================================
+}

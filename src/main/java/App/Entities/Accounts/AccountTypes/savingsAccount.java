@@ -1,7 +1,7 @@
 package App.Entities.Accounts.AccountTypes;
 
 import App.Entities.Accounts.Account;
-import App.Entities.Accounts.BankStatement.Statement;
+import App.Entities.Accounts.BankStatement.ExtractLog;
 import App.Entities.Accounts.Operations;
 import App.Entities.Customer.Client;
 import App.Support.GenerateId;
@@ -19,9 +19,13 @@ public class savingsAccount extends Account implements Operations {
 
 //   operations =================================================================================================
 
+    public void earnInterest(){
+        // implementar
+    }
+
     @Override
     public void generateExtract()throws Exception {
-        setExtrato(new Statement());
+        setExtrato(new ExtractLog());
     }
 //  =============================================================================================================
 
