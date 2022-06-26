@@ -7,8 +7,13 @@ import App.Entities.Accounts.BankStatement.ExtractLog;
 import App.Entities.Accounts.BankStatement.PDF.ExtractPDF;
 import App.Entities.Accounts.TypeOperations;
 import App.Entities.Customer.Client;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class Main {
@@ -19,23 +24,37 @@ public class Main {
 
 
         Account account1 = new savingsAccount(
-                new Client("Bruno Rafael Nascimento dos Santos","Santos","20/09/200","09242681580")
+                new Client("Bruno Rafael Nascimento dos Santos","Sobrenome","20/09/200","09242681580")
         );
+        Account account2 = new savingsAccount(
+                new Client("Nilton César","Sobrenome","20/09/200","09242681580")
+        );
+        account2.deposit(200);
         account1.deposit(100);
+        account2.transfer(account1,37.6);
         account1.withdraw(50);
         account1.deposit(300);
         account1.deposit(425);
         account1.withdraw(150);
         account1.deposit(400);
         account1.deposit(400);
+        account1.transfer(account2, 50);
 
-        System.out.println(account1.getHistLogs());
+
+//        List<ExtractLog> logs = account2.getHistLogs();
+//
+//        for (ExtractLog log: logs) {
+//            System.out.println(log.getSender_receiver());
+//        }
+
+        //System.out.println(account1.getHistLogs());
 
         ExtractPDF extrato = new ExtractPDF(account1, account1.getHistLogs());
         extrato.header();
-        extrato.body();
+        extrato.body2();
         extrato.footer();
         extrato.printOut();
+
 
 
 
