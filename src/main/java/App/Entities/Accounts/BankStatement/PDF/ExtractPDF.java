@@ -52,23 +52,28 @@ public class ExtractPDF implements MethodsPDF {
         img.setAlignment(Element.ALIGN_CENTER);
         this.document.add(img);
 
+
         this.document.add(new Paragraph(" "));
         this.document.add(new Paragraph(" "));
         this.document.add(new Paragraph(" "));
+
 
         Paragraph title = new Paragraph();
         title.setAlignment(Element.ALIGN_CENTER);
         title.add(new Chunk("EXTRATO BANCÁRIO",ConstantsPDF.FONT_TITLE));
         this.document.add(title);
 
+        
         this.document.add(new Paragraph(" "));
         this.document.add(new Paragraph(" "));
 
+        
         Paragraph numAccount = new Paragraph();
         numAccount.setAlignment(Element.ALIGN_LEFT);
         numAccount.add(
                 new Chunk("N° Conta:  " + this.account.getNumAccount(),ConstantsPDF.FONT_SUBTITLE_I)
         );
+
 
         Paragraph client = new Paragraph();
         client.setAlignment(Element.ALIGN_LEFT);
@@ -77,7 +82,7 @@ public class ExtractPDF implements MethodsPDF {
         );
 
         // implementar tipo de conta com if ou switch // conta corrente ou poupança
-
+        
         this.document.add(numAccount);
         this.document.add(client);
 
@@ -85,72 +90,6 @@ public class ExtractPDF implements MethodsPDF {
 
     @Override
     public void body() throws DocumentException {
-
-        this.document.add(new Paragraph(" "));
-        this.document.add(new Paragraph(" "));
-
-        for (ExtractLog logs: this.extracts) {
-
-            Paragraph l;
-            if(logs.getSender_receiver() != null){
-
-                switch (logs.getTypeOp()){
-
-                    case TRANSFER_SENT -> {
-                        l = new Paragraph(
-                                "Data:  " + logs.getDate() + "   " +
-                                        "Hora:  " + logs.getHours() + "   " +
-                                        "Op:  " + logs.getTypeOp().getOperation() + "   " +
-                                        "Valor:  " + NumberFormat.getCurrencyInstance(ptBr).format(logs.getValue()) + "   " +
-                                        "Dest:  " + logs.getSender_receiver()
-                        );
-                        l.setAlignment(Element.ALIGN_LEFT);
-                        this.document.add(l);
-                    }
-
-                    case TRANSFER_RECEIVED -> {
-                        l = new Paragraph(
-                                "Data:  " + logs.getDate() + "   " +
-                                        "Hora:  " + logs.getHours() + "   " +
-                                        "Op:  " + logs.getTypeOp().getOperation() + "   " +
-                                        "Valor:  " + NumberFormat.getCurrencyInstance(ptBr).format(logs.getValue()) + "   "  +
-                                        "Rem:  " + logs.getSender_receiver()
-                        );
-                        l.setAlignment(Element.ALIGN_LEFT);
-                        this.document.add(l);
-                    }
-                }
-
-            } else {
-
-                l = new Paragraph(
-                        "Data:  " + logs.getDate() + "   " +
-                                "Hora:  " + logs.getHours() + "   " +
-                                "Op:  " + logs.getTypeOp().getOperation() + "     " +
-                                "Valor:  " + NumberFormat.getCurrencyInstance(ptBr).format(logs.getValue())
-                );
-                l.setAlignment(Element.ALIGN_LEFT);
-                this.document.add(l);
-            }
-        }
-
-        this.document.add(new Paragraph(" "));
-        this.document.add(new Paragraph(" "));
-
-        Font f = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
-        Paragraph balance = new Paragraph();
-        balance.setAlignment(Element.ALIGN_RIGHT);
-        balance.add(new Chunk(
-                "Saldo:  " + NumberFormat.getCurrencyInstance(ptBr).format(this.account.getBalance()),f
-        ));
-        this.document.add(balance);
-
-        this.document.add(new Paragraph(" "));
-        this.document.add(new Paragraph(" "));
-
-
-    }
-    public void body2() throws DocumentException {
 
         this.document.add(new Paragraph(" "));
         this.document.add(new Paragraph(" "));
@@ -167,6 +106,7 @@ public class ExtractPDF implements MethodsPDF {
         columns.forEach(field -> {
             PdfPCell c = new PdfPCell(Paragraph.getInstance(field));
             c.setHorizontalAlignment(Element.ALIGN_CENTER);
+            c.setVerticalAlignment(Element.ALIGN_JUSTIFIED);
             table.addCell(c);
         });
 
@@ -176,43 +116,52 @@ public class ExtractPDF implements MethodsPDF {
 
                 switch (fill.getTypeOp()){
                     case TRANSFER_SENT -> {
-                        table.addCell(new PdfPCell(new Phrase(fill.getDate())));
-                        table.addCell(new PdfPCell(new Phrase(fill.getHours())));
-                        table.addCell(new PdfPCell(new Phrase(fill.getTypeOp().getOperation())));
-                        table.addCell(new PdfPCell(new Phrase(
-                                NumberFormat.getCurrencyInstance(ptBr).format(fill.getValue())
-                        )));
-                        table.addCell(new PdfPCell(new Phrase(fill.getSender_receiver(), ConstantsPDF.FONT_RED)));
+
+                        fillWithSubtractionOfValues(table, fill);
+                        PdfPCell cell;
+
+                        cell = new PdfPCell(new Phrase(fill.getSender_receiver(), ConstantsPDF.FONT_RED));
+                        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        table.addCell(cell);
+
                     }
                     case TRANSFER_RECEIVED -> {
-                        table.addCell(new PdfPCell(new Phrase(fill.getDate())));
-                        table.addCell(new PdfPCell(new Phrase(fill.getHours())));
-                        table.addCell(new PdfPCell(new Phrase(fill.getTypeOp().getOperation())));
-                        table.addCell(new PdfPCell(new Phrase(
-                                NumberFormat.getCurrencyInstance(ptBr).format(fill.getValue())
-                        )));
-                        table.addCell(new PdfPCell(new Phrase(fill.getSender_receiver(), ConstantsPDF.FONT_BLUE)));
+
+                        fillWithAddingValues(table, fill);
+                        PdfPCell cell;
+
+                        cell = new PdfPCell(new Phrase(fill.getSender_receiver(), ConstantsPDF.FONT_BLUE));
+                        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        table.addCell(cell);
+
                     }
                 }
 
             } else {
 
-                table.addCell(new PdfPCell(new Phrase(fill.getDate())));
-                table.addCell(new PdfPCell(new Phrase(fill.getHours())));
-                table.addCell(new PdfPCell(new Phrase(fill.getTypeOp().getOperation())));
-                table.addCell(new PdfPCell(new Phrase(
-                        NumberFormat.getCurrencyInstance(ptBr).format(fill.getValue())
-                )));
-                table.addCell(new PdfPCell(new Phrase(" ")));
+                switch (fill.getTypeOp()){
+                    case DEPOSIT ->{
+
+                        fillWithAddingValues(table, fill);
+                        table.addCell(new PdfPCell(new Phrase(" ")));
+
+                    }
+                    case WITHDRAW -> {
+
+                        fillWithSubtractionOfValues(table, fill);
+                        table.addCell(new PdfPCell(new Phrase(" ")));
+
+                    }
+                }
             }
         });
-
         this.document.add(table);
 
 
 
         this.document.add(new Paragraph(" "));
         this.document.add(new Paragraph(" "));
+
 
         Paragraph balance = new Paragraph();
         balance.setAlignment(Element.ALIGN_RIGHT);
@@ -221,6 +170,7 @@ public class ExtractPDF implements MethodsPDF {
                 ConstantsPDF.FONT_SUBTITLE_B
         ));
         this.document.add(balance);
+
 
         this.document.add(new Paragraph(" "));
         this.document.add(new Paragraph(" "));
@@ -249,4 +199,46 @@ public class ExtractPDF implements MethodsPDF {
             Desktop.getDesktop().open(new File(ConstantsPDF.FILE_PDF));
         }
     }
+
+
+//  auxiliary methods ================================================================================
+    private void generateCells(PdfPTable table, ExtractLog fill) {
+        PdfPCell cell = new PdfPCell(new Phrase(fill.getDate()));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
+
+        cell = new PdfPCell(new Phrase(fill.getHours()));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
+
+        cell = new PdfPCell(new Phrase(fill.getTypeOp().getOperation()));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
+    }
+
+    private void fillWithAddingValues(PdfPTable table, ExtractLog fill) {
+        generateCells(table, fill);
+        PdfPCell cell;
+
+        cell = new PdfPCell(new Phrase(
+                NumberFormat.getCurrencyInstance(ptBr).format(fill.getValue()),
+                ConstantsPDF.FONT_BLUE
+        ));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
+    }
+
+    private void fillWithSubtractionOfValues(PdfPTable table, ExtractLog fill) {
+        generateCells(table, fill);
+        PdfPCell cell;
+
+        cell = new PdfPCell(new Phrase(
+                NumberFormat.getCurrencyInstance(ptBr).format(fill.getValue()),
+                ConstantsPDF.FONT_RED
+        ));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
+    }
+//====================================================================================================
+
 }

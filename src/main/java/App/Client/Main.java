@@ -51,7 +51,7 @@ public class Main {
 
         ExtractPDF extrato = new ExtractPDF(account1, account1.getHistLogs());
         extrato.header();
-        extrato.body2();
+        extrato.body();
         extrato.footer();
         extrato.printOut();
 
