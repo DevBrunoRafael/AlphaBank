@@ -67,7 +67,7 @@ public class ExtractPDF implements ExtractBase{
 
         Paragraph client = new Paragraph();
         client.setAlignment(Element.ALIGN_LEFT);
-        client.add(new Chunk("Client:  " + this.account.getClient().getName()));
+        client.add(new Chunk("Cliente:  " + this.account.getClient().getName()));
 
         this.document.add(numAccount);
         this.document.add(client);

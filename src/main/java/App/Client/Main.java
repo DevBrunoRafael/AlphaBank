@@ -22,8 +22,11 @@ public class Main {
                 new Client("Bruno Rafael Nascimento dos Santos","Santos","20/09/200","09242681580")
         );
         account1.deposit(100);
-        account1.deposit(200);
+        account1.withdraw(50);
         account1.deposit(300);
+        account1.deposit(425);
+        account1.withdraw(150);
+        account1.deposit(400);
         account1.deposit(400);
 
         System.out.println(account1.getHistLogs());
