@@ -49,7 +49,7 @@ public class Main {
 
         //System.out.println(account1.getHistLogs());
 
-        ExtractPDF extrato = new ExtractPDF(account1, account1.getHistLogs());
+        ExtractPDF extrato = new ExtractPDF(account1);
         extrato.header();
         extrato.body();
         extrato.footer();

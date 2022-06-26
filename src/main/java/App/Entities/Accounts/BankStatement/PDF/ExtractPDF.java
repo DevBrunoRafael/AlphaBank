@@ -3,7 +3,6 @@ package App.Entities.Accounts.BankStatement.PDF;
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.BankStatement.ExtractLog;
 import com.itextpdf.text.*;
-import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -25,11 +24,11 @@ public class ExtractPDF implements MethodsPDF {
 
     private final Document document = new Document();
     private final Account account;
-    private final List<ExtractLog> extracts;
+    //private final List<ExtractLog> extracts;
 
-    public ExtractPDF(Account account, List<ExtractLog> extracts) {
+    public ExtractPDF(Account account/*, List<ExtractLog> extracts*/) {
         this.account = account;
-        this.extracts = extracts;
+        //this.extracts = extracts;
 
         try{
             PdfWriter.getInstance(this.document, new FileOutputStream(ConstantsPDF.FILE_PDF));
@@ -73,19 +72,16 @@ public class ExtractPDF implements MethodsPDF {
         numAccount.add(
                 new Chunk("N° Conta:  " + this.account.getNumAccount(),ConstantsPDF.FONT_SUBTITLE_I)
         );
-
+        this.document.add(numAccount);
 
         Paragraph client = new Paragraph();
         client.setAlignment(Element.ALIGN_LEFT);
         client.add(
                 new Chunk("Cliente:  " + this.account.getClient().getName(),ConstantsPDF.FONT_SUBTITLE_I)
         );
-
-        // implementar tipo de conta com if ou switch // conta corrente ou poupança
-        
-        this.document.add(numAccount);
         this.document.add(client);
 
+        // implementar tipo de conta com if ou switch // conta corrente ou poupança
     }
 
     @Override
@@ -95,19 +91,19 @@ public class ExtractPDF implements MethodsPDF {
         this.document.add(new Paragraph(" "));
 
         List<String> columns = Arrays.asList(
-                "Data",
-                "Horário",
-                "Operação",
-                "Valor",
-                "RD"
+                "Data", "Horário", "Operação", "Valor", "RD"
         );
 
         PdfPTable table = new PdfPTable(columns.size());
         columns.forEach(field -> {
-            PdfPCell c = new PdfPCell(Paragraph.getInstance(field));
-            c.setHorizontalAlignment(Element.ALIGN_CENTER);
-            c.setVerticalAlignment(Element.ALIGN_JUSTIFIED);
-            table.addCell(c);
+            PdfPCell cell = new PdfPCell(new Paragraph(
+                    field.toUpperCase(),
+                    ConstantsPDF.FONT_CELL_HEADER
+            ));
+
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setVerticalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
         });
 
         this.account.getHistLogs().forEach(fill -> {
@@ -122,6 +118,7 @@ public class ExtractPDF implements MethodsPDF {
 
                         cell = new PdfPCell(new Phrase(fill.getSender_receiver(), ConstantsPDF.FONT_RED));
                         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
                         table.addCell(cell);
 
                     }
@@ -132,6 +129,8 @@ public class ExtractPDF implements MethodsPDF {
 
                         cell = new PdfPCell(new Phrase(fill.getSender_receiver(), ConstantsPDF.FONT_BLUE));
                         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
+
                         table.addCell(cell);
 
                     }
@@ -143,18 +142,23 @@ public class ExtractPDF implements MethodsPDF {
                     case DEPOSIT ->{
 
                         fillWithAddingValues(table, fill);
-                        table.addCell(new PdfPCell(new Phrase(" ")));
+                        PdfPCell cell = new PdfPCell(new Phrase(" "));
+                        cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
+                        table.addCell(cell);
 
                     }
                     case WITHDRAW -> {
 
                         fillWithSubtractionOfValues(table, fill);
-                        table.addCell(new PdfPCell(new Phrase(" ")));
+                        PdfPCell cell = new PdfPCell(new Phrase(" "));
+                        cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
+                        table.addCell(cell);
 
                     }
                 }
             }
         });
+        table.setWidthPercentage(95f);
         this.document.add(table);
 
 
@@ -181,7 +185,8 @@ public class ExtractPDF implements MethodsPDF {
     @Override
     public void footer() throws DocumentException {
         Paragraph div = new Paragraph(
-                "-------------------------------------------------------------------------------------"
+                "__________________________________________" +
+                        "_______________"
         );
         div.setAlignment(Element.ALIGN_CENTER);
         this.document.add(div);
@@ -203,16 +208,19 @@ public class ExtractPDF implements MethodsPDF {
 
 //  auxiliary methods ================================================================================
     private void generateCells(PdfPTable table, ExtractLog fill) {
-        PdfPCell cell = new PdfPCell(new Phrase(fill.getDate()));
+        PdfPCell cell = new PdfPCell(new Phrase(fill.getDate(),ConstantsPDF.FONT_CELL_BODY));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
         table.addCell(cell);
 
-        cell = new PdfPCell(new Phrase(fill.getHours()));
+        cell = new PdfPCell(new Phrase(fill.getHours(), ConstantsPDF.FONT_CELL_BODY));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
         table.addCell(cell);
 
-        cell = new PdfPCell(new Phrase(fill.getTypeOp().getOperation()));
+        cell = new PdfPCell(new Phrase(fill.getTypeOp().getOperation(),ConstantsPDF.FONT_CELL_BODY));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
         table.addCell(cell);
     }
 
@@ -225,6 +233,7 @@ public class ExtractPDF implements MethodsPDF {
                 ConstantsPDF.FONT_BLUE
         ));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
         table.addCell(cell);
     }
 
@@ -237,6 +246,7 @@ public class ExtractPDF implements MethodsPDF {
                 ConstantsPDF.FONT_RED
         ));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
         table.addCell(cell);
     }
 //====================================================================================================
