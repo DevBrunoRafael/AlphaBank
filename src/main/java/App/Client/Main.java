@@ -1,19 +1,10 @@
 package App.Client;
 
 import App.Entities.Accounts.Account;
-import App.Entities.Accounts.AccountTypes.currentAccount;
 import App.Entities.Accounts.AccountTypes.savingsAccount;
-import App.Entities.Accounts.BankStatement.ExtractLog;
 import App.Entities.Accounts.BankStatement.PDF.ExtractPDF;
-import App.Entities.Accounts.TypeOperations;
 import App.Entities.Customer.Client;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class Main {

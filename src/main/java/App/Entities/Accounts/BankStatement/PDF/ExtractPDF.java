@@ -24,11 +24,10 @@ public class ExtractPDF implements MethodsPDF {
 
     private final Document document = new Document();
     private final Account account;
-    //private final List<ExtractLog> extracts;
 
-    public ExtractPDF(Account account/*, List<ExtractLog> extracts*/) {
+
+    public ExtractPDF(Account account) {
         this.account = account;
-        //this.extracts = extracts;
 
         try{
             PdfWriter.getInstance(this.document, new FileOutputStream(ConstantsPDF.FILE_PDF));

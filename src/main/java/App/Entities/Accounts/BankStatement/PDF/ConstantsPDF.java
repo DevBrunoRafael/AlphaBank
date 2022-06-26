@@ -4,7 +4,7 @@ import com.itextpdf.text.*;
 
 public class ConstantsPDF {
 
-    // BRINCAR COM A MANIPULAÇÃO DAS FONTES DEPOIS
+    // FAZER MANIPULAÇÃO DAS FONTES
 
     // FONTES
     public static Font FONT_TITLE = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
