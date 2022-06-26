@@ -13,7 +13,6 @@ public class Main {
 
         // testes
 
-
         Account account1 = new savingsAccount(
                 new Client("Bruno Rafael Nascimento dos Santos","Sobrenome","20/09/200","09242681580")
         );

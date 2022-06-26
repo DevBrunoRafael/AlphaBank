@@ -102,6 +102,8 @@ public class ExtractPDF implements MethodsPDF {
 
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setVerticalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY.brighter());
+            cell.setPaddingBottom(3.5f);
             table.addCell(cell);
         });
 

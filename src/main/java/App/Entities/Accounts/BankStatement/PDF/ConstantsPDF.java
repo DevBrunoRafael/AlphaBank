@@ -24,4 +24,5 @@ public class ConstantsPDF {
     // TABLE
     public static final float BORDER_CELL = (float) 0.001;
 
+
 }
