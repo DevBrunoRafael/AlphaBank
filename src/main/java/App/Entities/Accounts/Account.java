@@ -90,6 +90,9 @@ public abstract class Account {
     public double getBalance() {
         return balance;
     }
+    public List<ExtractLog> getHistLogs() {
+        return histLogs;
+    }
 
     public void setNumAccount(String numAccount) {
         this.numAccount = numAccount;
@@ -100,7 +103,10 @@ public abstract class Account {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-//  ===========================================================================================================
+    public void setHistLogs(List<ExtractLog> histLogs) {
+        this.histLogs = histLogs;
+    }
+    //  ===========================================================================================================
 
 
 //  auxiliary method ==========================================================================================
