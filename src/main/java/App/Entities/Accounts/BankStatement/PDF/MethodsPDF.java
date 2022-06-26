@@ -4,9 +4,9 @@ import com.itextpdf.text.DocumentException;
 
 import java.io.IOException;
 
-public interface ExtractBase {
+public interface MethodsPDF {
     void header() throws DocumentException, IOException;
     void body() throws DocumentException;
     void footer() throws DocumentException;
-    void printOut();
+    void printOut() throws IOException;
 }
