@@ -15,10 +15,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
-import java.util.Locale;
 
 public class ExtractPDF implements MethodsPDF {
 
@@ -90,10 +88,17 @@ public class ExtractPDF implements MethodsPDF {
         this.document.add(new Paragraph(" "));
 
         List<String> columns = Arrays.asList(
-                "Data", "Horário", "Operação", "Valor", "RD"
+                "Data",
+                "Horário",
+                "Operação",
+                "Valor",
+                "RD"
         );
 
         PdfPTable table = new PdfPTable(columns.size());
+        table.setWidthPercentage(95f);
+
+
         columns.forEach(field -> {
             PdfPCell cell = new PdfPCell(new Paragraph(
                     field.toUpperCase(),
@@ -121,7 +126,6 @@ public class ExtractPDF implements MethodsPDF {
                         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                         cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
                         table.addCell(cell);
-
                     }
                     case TRANSFER_RECEIVED -> {
 
@@ -131,14 +135,11 @@ public class ExtractPDF implements MethodsPDF {
                         cell = new PdfPCell(new Phrase(fill.getSender_receiver(), ConstantsPDF.FONT_BLUE));
                         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                         cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
-
                         table.addCell(cell);
-
                     }
                 }
-
-            } else {
-
+            }
+            else {
                 switch (fill.getTypeOp()){
                     case DEPOSIT -> {
 
@@ -159,7 +160,6 @@ public class ExtractPDF implements MethodsPDF {
                 }
             }
         });
-        table.setWidthPercentage(95f);
         this.document.add(table);
 
 
@@ -207,7 +207,7 @@ public class ExtractPDF implements MethodsPDF {
     }
 
 
-    //  auxiliary methods ================================================================================
+/*    auxiliary methods ================================================================================*/
     private void generateCells(PdfPTable table, ExtractLog fill) {
         PdfPCell cell = new PdfPCell(new Phrase(fill.getDate(),ConstantsPDF.FONT_CELL_BODY));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -250,6 +250,6 @@ public class ExtractPDF implements MethodsPDF {
         cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
         table.addCell(cell);
     }
-//====================================================================================================
+/*====================================================================================================*/
 
 }

@@ -13,8 +13,8 @@ public class ConstantsPDF {
 
     public static Font FONT_CELL_HEADER = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
     public static Font FONT_CELL_BODY = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL);
-    public static Font FONT_RED = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL, BaseColor.RED);
-    public static Font FONT_BLUE = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL, BaseColor.BLUE);
+    public static Font FONT_RED = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL, BaseColor.RED.darker());
+    public static Font FONT_BLUE = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL, BaseColor.BLUE.darker());
 
     // DIRECTORIES
     public static final String IMAGE = "C:/Users/Bruno Rafael/Downloads/logo.png";
