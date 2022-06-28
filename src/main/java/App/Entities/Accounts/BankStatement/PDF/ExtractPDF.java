@@ -100,6 +100,9 @@ public class ExtractPDF implements StructurePDF {
         this.document.add(new Paragraph(" "));
         this.document.add(new Paragraph(" "));
 
+        PdfPTable table = new PdfPTable(new float[]{0.15f, 0.15f, 0.25f, 0.2f, 0.3f});
+        table.setWidthPercentage(95f);
+
         List<String> columns = Arrays.asList(
                 "Data",
                 "Horário",
@@ -107,10 +110,6 @@ public class ExtractPDF implements StructurePDF {
                 "Valor",
                 "RD"
         );
-
-        PdfPTable table = new PdfPTable(columns.size());
-        table.setWidthPercentage(95f);
-
 
         columns.forEach(field -> {
             PdfPCell cell = new PdfPCell(new Paragraph(
@@ -173,6 +172,8 @@ public class ExtractPDF implements StructurePDF {
                 }
             }
         });
+
+
         this.document.add(table);
 
 
@@ -257,6 +258,7 @@ public class ExtractPDF implements StructurePDF {
         PdfPCell cell;
 
         cell = new PdfPCell(new Phrase(
+                "-" +
                 NumberFormat.getCurrencyInstance(ptBr).format(fill.getValue()),
                 ConstantsPDF.FONT_RED
         ));

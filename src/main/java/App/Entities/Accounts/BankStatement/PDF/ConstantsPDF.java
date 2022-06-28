@@ -8,12 +8,12 @@ public class ConstantsPDF {
     // FONTES
     public static Font FONT_TITLE = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
     public static Font FONT_SUBTITLE_FIELD_I = new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD);
-    public static Font FONT_SUBTITLE_FILL_I = new Font(Font.FontFamily.HELVETICA, 13, Font.ITALIC);
+    public static Font FONT_SUBTITLE_FILL_I = new Font(Font.FontFamily.HELVETICA, 13, Font.NORMAL);
     public static Font FONT_SUBTITLE_B = new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD);
 
     public static Font FONT_CELL_HEADER = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
     public static Font FONT_CELL_BODY = new Font(
-            Font.FontFamily.HELVETICA, 10, Font.NORMAL, new BaseColor(65,65,65)
+            Font.FontFamily.HELVETICA, 10, Font.NORMAL, new BaseColor(60,60,60)
     );
 
     public static Font FONT_RED = new Font(

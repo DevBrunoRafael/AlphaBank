@@ -5,6 +5,8 @@ import App.Entities.Accounts.AccountTypes.savingsAccount;
 import App.Entities.Accounts.BankStatement.PDF.ExtractFacade;
 import App.Entities.Customer.Client;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Main {
@@ -33,8 +35,6 @@ public class Main {
 
 
         new ExtractFacade(account1);
-
-
 
     }
 
