@@ -1,10 +1,10 @@
 package App.Entities.Accounts;
 
 public enum TypeOperations {
-    DEPOSIT("DPS"),
-    WITHDRAW("SAQ"),
-    TRANSFER_SENT("TEV"),
-    TRANSFER_RECEIVED("TRC");
+    DEPOSIT("Depósito"),
+    WITHDRAW("Saque"),
+    TRANSFER_SENT("Transf. Enviada"),
+    TRANSFER_RECEIVED("Transf. Recebida");
 
     private final String operation;
 

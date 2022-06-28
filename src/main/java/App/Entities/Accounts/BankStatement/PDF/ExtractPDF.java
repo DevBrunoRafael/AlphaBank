@@ -100,7 +100,10 @@ public class ExtractPDF implements StructurePDF {
         this.document.add(new Paragraph(" "));
         this.document.add(new Paragraph(" "));
 
-        PdfPTable table = new PdfPTable(new float[]{0.15f, 0.15f, 0.25f, 0.2f, 0.3f});
+        PdfPTable table = new PdfPTable(
+                new float[]{0.15f, 0.15f, 0.25f, 0.2f, 0.3f}
+        );
+
         table.setWidthPercentage(95f);
 
         List<String> columns = Arrays.asList(
