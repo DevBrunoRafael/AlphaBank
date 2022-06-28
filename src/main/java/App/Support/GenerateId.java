@@ -21,7 +21,7 @@ public class GenerateId {
 
         Random random = new Random();
         for (int i = 0; i < 6; i++) {
-            text.append(random.nextInt(10));
+            text.append(random.nextInt(9));
         }
 
         switch (typeAccount){

@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
-public class ExtractPDF implements MethodsPDF {
+public class ExtractPDF implements StructurePDF {
 
     private final Document document = new Document();
     private final Account account;
@@ -56,7 +56,9 @@ public class ExtractPDF implements MethodsPDF {
 
         Paragraph title = new Paragraph();
         title.setAlignment(Element.ALIGN_CENTER);
-        title.add(new Chunk("EXTRATO BANCÁRIO",ConstantsPDF.FONT_TITLE));
+        title.add(
+                new Chunk("EXTRATO BANCÁRIO",ConstantsPDF.FONT_TITLE)
+        );
         this.document.add(title);
 
 
@@ -67,18 +69,34 @@ public class ExtractPDF implements MethodsPDF {
         Paragraph numAccount = new Paragraph();
         numAccount.setAlignment(Element.ALIGN_LEFT);
         numAccount.add(
-                new Chunk("N° Conta:  " + this.account.getNumAccount(),ConstantsPDF.FONT_SUBTITLE_I)
+                new Chunk("N° Conta:  ", ConstantsPDF.FONT_SUBTITLE_FIELD_I)
         );
-        this.document.add(numAccount);
+        numAccount.add(
+                new Phrase(this.account.getNumAccount(), ConstantsPDF.FONT_SUBTITLE_FILL_I)
+        );
 
         Paragraph client = new Paragraph();
         client.setAlignment(Element.ALIGN_LEFT);
         client.add(
-                new Chunk("Cliente:  " + this.account.getClient().getName(),ConstantsPDF.FONT_SUBTITLE_I)
+                new Chunk("Cliente:  ", ConstantsPDF.FONT_SUBTITLE_FIELD_I)
         );
-        this.document.add(client);
+        client.add(
+                new Phrase(this.account.getClient().getName(), ConstantsPDF.FONT_SUBTITLE_FILL_I)
+        );
 
-        // implementar tipo de conta com if ou switch // conta corrente ou poupança
+        Paragraph typeAccount = new Paragraph();
+        typeAccount.setAlignment(Element.ALIGN_LEFT);
+        typeAccount.add(
+                new Chunk("Tipo:  ", ConstantsPDF.FONT_SUBTITLE_FIELD_I)
+        );
+        typeAccount.add(
+                new Phrase(typeChecker(this.account.getNumAccount()),ConstantsPDF.FONT_SUBTITLE_FILL_I)
+        );
+
+
+        this.document.add(numAccount);
+        this.document.add(client);
+        this.document.add(typeAccount);
     }
 
     @Override
@@ -198,6 +216,7 @@ public class ExtractPDF implements MethodsPDF {
         this.document.add(date);
 
     }
+
     @Override
     public void printOut() throws IOException {
         if (this.document.isOpen()){
@@ -250,6 +269,11 @@ public class ExtractPDF implements MethodsPDF {
         cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
         table.addCell(cell);
     }
+    private String typeChecker(String numAccount){
+        return numAccount.charAt(9) == 3 ? "Poupança" : "Corrente";
+    }
+
+
 /*====================================================================================================*/
 
 }

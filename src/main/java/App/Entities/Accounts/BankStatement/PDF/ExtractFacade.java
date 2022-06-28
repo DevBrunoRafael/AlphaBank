@@ -7,7 +7,6 @@ import java.io.IOException;
 
 public class ExtractFacade {
 
-
     public ExtractFacade(Account account) throws DocumentException, IOException {
         buildExtractPDF(account);
     }

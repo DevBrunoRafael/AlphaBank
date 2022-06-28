@@ -4,12 +4,11 @@ import com.itextpdf.text.*;
 
 public class ConstantsPDF {
 
-    // FAZER MANIPULAÇÃO DAS FONTES
-
     // FONTES
     public static Font FONT_TITLE = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
-    public static Font FONT_SUBTITLE_I = new Font(Font.FontFamily.HELVETICA, 14, Font.ITALIC);
-    public static Font FONT_SUBTITLE_B = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
+    public static Font FONT_SUBTITLE_FIELD_I = new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD);
+    public static Font FONT_SUBTITLE_FILL_I = new Font(Font.FontFamily.HELVETICA, 13, Font.ITALIC);
+    public static Font FONT_SUBTITLE_B = new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD);
 
     public static Font FONT_CELL_HEADER = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
     public static Font FONT_CELL_BODY = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL);
@@ -23,6 +22,4 @@ public class ConstantsPDF {
 
     // TABLE
     public static final float BORDER_CELL = (float) 0.001;
-
-
 }
