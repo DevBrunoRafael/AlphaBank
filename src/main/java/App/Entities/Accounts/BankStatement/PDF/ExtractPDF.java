@@ -61,7 +61,7 @@ public class ExtractPDF implements MethodsPDF {
         title.add(new Chunk("EXTRATO BANCÁRIO",ConstantsPDF.FONT_TITLE));
         this.document.add(title);
 
-        
+
         this.document.add(new Paragraph(" "));
         this.document.add(new Paragraph(" "));
 
@@ -140,7 +140,7 @@ public class ExtractPDF implements MethodsPDF {
             } else {
 
                 switch (fill.getTypeOp()){
-                    case DEPOSIT ->{
+                    case DEPOSIT -> {
 
                         fillWithAddingValues(table, fill);
                         PdfPCell cell = new PdfPCell(new Phrase(" "));
@@ -207,7 +207,7 @@ public class ExtractPDF implements MethodsPDF {
     }
 
 
-//  auxiliary methods ================================================================================
+    //  auxiliary methods ================================================================================
     private void generateCells(PdfPTable table, ExtractLog fill) {
         PdfPCell cell = new PdfPCell(new Phrase(fill.getDate(),ConstantsPDF.FONT_CELL_BODY));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);

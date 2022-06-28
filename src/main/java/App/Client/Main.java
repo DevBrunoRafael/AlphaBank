@@ -2,6 +2,7 @@ package App.Client;
 
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.AccountTypes.savingsAccount;
+import App.Entities.Accounts.BankStatement.PDF.ExtractFacade;
 import App.Entities.Accounts.BankStatement.PDF.ExtractPDF;
 import App.Entities.Customer.Client;
 
@@ -39,11 +40,7 @@ public class Main {
 
         //System.out.println(account1.getHistLogs());
 
-        ExtractPDF extrato = new ExtractPDF(account1);
-        extrato.header();
-        extrato.body();
-        extrato.footer();
-        extrato.printOut();
+        new ExtractFacade(account1);
 
 
 
