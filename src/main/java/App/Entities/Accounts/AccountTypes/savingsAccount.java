@@ -3,7 +3,7 @@ package App.Entities.Accounts.AccountTypes;
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.Operations;
 import App.Entities.Customer.Client;
-import App.Support.GenerateId;
+import App.Support.Utilities;
 
 public class savingsAccount extends Account implements Operations {
 
@@ -11,7 +11,7 @@ public class savingsAccount extends Account implements Operations {
 
 //   constructor ================================================================================================
     public savingsAccount(Client client) {
-        super(GenerateId.getInstance().gerarId(0), client);
+        super(Utilities.generateId(0), client);
     }
 //  =============================================================================================================
 

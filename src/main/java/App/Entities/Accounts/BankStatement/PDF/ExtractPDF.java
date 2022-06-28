@@ -2,6 +2,7 @@ package App.Entities.Accounts.BankStatement.PDF;
 
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.BankStatement.ExtractLog;
+import App.Support.Utilities;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -14,7 +15,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
@@ -37,9 +37,6 @@ public class ExtractPDF implements StructurePDF {
     }
 
     Locale ptBr = new Locale("pt", "BR");
-    Date current = new Date();
-    String data = new SimpleDateFormat("dd/MM/yyyy").format(current);
-
 
     @Override
     public void header() throws DocumentException, IOException {
@@ -69,34 +66,32 @@ public class ExtractPDF implements StructurePDF {
         Paragraph numAccount = new Paragraph();
         numAccount.setAlignment(Element.ALIGN_LEFT);
         numAccount.add(
-                new Chunk("N° Conta:  ", ConstantsPDF.FONT_SUBTITLE_FIELD_I)
+                new Chunk("N° Conta: ", ConstantsPDF.FONT_SUBTITLE_FIELD_I)
         );
         numAccount.add(
                 new Phrase(this.account.getNumAccount(), ConstantsPDF.FONT_SUBTITLE_FILL_I)
+        );
+        numAccount.add(
+                new Chunk("    ")
+        );
+        numAccount.add(
+                new Chunk("Tipo: ", ConstantsPDF.FONT_SUBTITLE_FIELD_I)
+        );
+        numAccount.add(
+                new Phrase(typeChecker(this.account.getNumAccount()),ConstantsPDF.FONT_SUBTITLE_FILL_I)
         );
 
         Paragraph client = new Paragraph();
         client.setAlignment(Element.ALIGN_LEFT);
         client.add(
-                new Chunk("Cliente:  ", ConstantsPDF.FONT_SUBTITLE_FIELD_I)
+                new Chunk("Cliente: ", ConstantsPDF.FONT_SUBTITLE_FIELD_I)
         );
         client.add(
                 new Phrase(this.account.getClient().getName(), ConstantsPDF.FONT_SUBTITLE_FILL_I)
         );
 
-        Paragraph typeAccount = new Paragraph();
-        typeAccount.setAlignment(Element.ALIGN_LEFT);
-        typeAccount.add(
-                new Chunk("Tipo:  ", ConstantsPDF.FONT_SUBTITLE_FIELD_I)
-        );
-        typeAccount.add(
-                new Phrase(typeChecker(this.account.getNumAccount()),ConstantsPDF.FONT_SUBTITLE_FILL_I)
-        );
-
-
         this.document.add(numAccount);
         this.document.add(client);
-        this.document.add(typeAccount);
     }
 
     @Override
@@ -212,7 +207,7 @@ public class ExtractPDF implements StructurePDF {
 
         Paragraph date = new Paragraph();
         date.setAlignment(Element.ALIGN_CENTER);
-        date.add(data);
+        date.add(Utilities.CurrentDate());
         this.document.add(date);
 
     }
@@ -270,7 +265,7 @@ public class ExtractPDF implements StructurePDF {
         table.addCell(cell);
     }
     private String typeChecker(String numAccount){
-        return numAccount.charAt(9) == 3 ? "Poupança" : "Corrente";
+        return numAccount.charAt(9) == '3' ? "Poupança" : "Corrente";
     }
 
 

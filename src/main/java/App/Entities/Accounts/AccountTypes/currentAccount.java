@@ -5,7 +5,7 @@ import App.Entities.Accounts.BankStatement.ExtractLog;
 import App.Entities.Accounts.Operations;
 import App.Entities.Accounts.TypeOperations;
 import App.Entities.Customer.Client;
-import App.Support.GenerateId;
+import App.Support.Utilities;
 
 public class currentAccount extends Account implements Operations {
 
@@ -13,7 +13,7 @@ public class currentAccount extends Account implements Operations {
 
 //   constructor ================================================================================================
     public currentAccount(Client client) {
-        super(GenerateId.getInstance().gerarId(1), client);
+        super(Utilities.generateId(1), client);
     }
 //  =============================================================================================================
 

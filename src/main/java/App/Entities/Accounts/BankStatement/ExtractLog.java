@@ -1,6 +1,7 @@
 package App.Entities.Accounts.BankStatement;
 
 import App.Entities.Accounts.TypeOperations;
+import App.Support.Utilities;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -26,10 +27,8 @@ public class ExtractLog {
         this.nameClient = nameClient;
         this.value = value;
         this.typeOp = typeOp;
-
-        Date current = new Date();
-        this.date = new SimpleDateFormat("dd/MM/yyyy").format(current);
-        this.hours = new SimpleDateFormat("HH:mm:ss").format(current);
+        this.date = Utilities.CurrentDate();
+        this.hours = Utilities.CurrentTime();
     }
 
     public ExtractLog(String numAccount, String nameClient, double value, TypeOperations typeOp, String sender_receiver) {
@@ -38,10 +37,8 @@ public class ExtractLog {
         this.value = value;
         this.typeOp = typeOp;
         this.sender_receiver = sender_receiver;
-
-        Date current = new Date();
-        this.date = new SimpleDateFormat("dd/MM/yyyy").format(current);
-        this.hours = new SimpleDateFormat("HH:mm:ss").format(current);
+        this.date = Utilities.CurrentDate();
+        this.hours = Utilities.CurrentTime();
     }
 
 

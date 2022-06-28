@@ -17,6 +17,9 @@ public class ConstantsPDF {
 
     // DIRECTORIES
     public static final String IMAGE = "C:/Users/Bruno Rafael/Downloads/logo.png";
+
+    StringBuilder str = new StringBuilder();
+
     public static final String FILE_PDF = "C:/Users/Bruno Rafael/IdeaProjects/AlphaBank/src/main/java" +
             "/App/Entities/Accounts/BankStatement/PDF/File/AlphaBank_Extrato.pdf";
 
