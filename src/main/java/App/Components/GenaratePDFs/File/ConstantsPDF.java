@@ -1,4 +1,4 @@
-package App.Entities.Accounts.BankStatement.PDF;
+package App.Components.GenaratePDFs.File;
 
 import App.Support.Utilities;
 import com.itextpdf.text.*;
@@ -29,7 +29,7 @@ public class ConstantsPDF {
 
     // !!!!!! Modificar
     static String str = ("C:/Users/Bruno Rafael/IdeaProjects/AlphaBank/src/main/java" +
-            "/App/Entities/Accounts/BankStatement/PDF/File/Extrato(" + Utilities.CurrentTime().charAt(4) + ").pdf");
+            "/App/Components/GenaratePDFs/File/Extrato(" + Utilities.CurrentTime().charAt(4) + ").pdf");
 
     public static final String FILE_PDF = str;
     // !!!!!! Modificar
