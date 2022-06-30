@@ -1,4 +1,4 @@
-package App.Components.GenaratePDFs.File;
+package App.Components.GenaratePDFs;
 
 import App.Support.Utilities;
 import com.itextpdf.text.*;

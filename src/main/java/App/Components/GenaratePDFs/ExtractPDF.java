@@ -1,6 +1,5 @@
-package App.Entities.Accounts.BankStatement.PDF;
+package App.Components.GenaratePDFs;
 
-import App.Components.GenaratePDFs.File.ConstantsPDF;
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.BankStatement.ExtractLog;
 import App.Support.Utilities;

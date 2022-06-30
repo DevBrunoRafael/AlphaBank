@@ -1,4 +1,4 @@
-package App.Entities.Accounts.BankStatement.PDF;
+package App.Components.GenaratePDFs;
 
 import App.Entities.Accounts.Account;
 import com.itextpdf.text.DocumentException;
