@@ -1,4 +1,4 @@
-package App.Components.GenaratePDFs;
+package App.Components.GeneratePDFs;
 
 import com.itextpdf.text.DocumentException;
 

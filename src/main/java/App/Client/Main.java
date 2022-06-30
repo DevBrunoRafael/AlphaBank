@@ -2,7 +2,7 @@ package App.Client;
 
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.AccountTypes.savingsAccount;
-import App.Components.GenaratePDFs.FacadePDF;
+import App.Components.GeneratePDFs.FacadePDF;
 import App.Entities.Customer.Client;
 
 
