@@ -5,9 +5,9 @@ import com.itextpdf.text.DocumentException;
 
 import java.io.IOException;
 
-public class ExtractFacade {
+public class FacadePDF {
 
-    public ExtractFacade(Account account) throws DocumentException, IOException {
+    public FacadePDF(Account account) throws DocumentException, IOException {
         buildExtractPDF(account);
     }
 

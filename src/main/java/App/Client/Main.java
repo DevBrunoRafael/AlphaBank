@@ -2,7 +2,7 @@ package App.Client;
 
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.AccountTypes.savingsAccount;
-import App.Components.GenaratePDFs.ExtractFacade;
+import App.Components.GenaratePDFs.FacadePDF;
 import App.Entities.Customer.Client;
 
 
@@ -36,7 +36,7 @@ public class Main {
         account1.withdraw(147);
 
 
-        new ExtractFacade(account1);
+        new FacadePDF(account1);
 
         
 
