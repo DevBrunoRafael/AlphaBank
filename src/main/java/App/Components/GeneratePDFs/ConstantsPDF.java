@@ -24,7 +24,7 @@ public class ConstantsPDF {
     );
 
     // DIRECTORIES
-    public static final String IMAGE = "C:/Users/Bruno Rafael/Downloads/logo.png";
+    public static final String IMAGE = "C:/Users/Bruno Rafael/IdeaProjects/AlphaBank/src/main/java/App/Assets/logo.png";
 
 
     // !!!!!! Modificar
