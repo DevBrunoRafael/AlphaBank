@@ -39,11 +39,10 @@ public class Main {
 
         //new FacadePDF(account1);
 
-        //new FacadeEMAIL().submitAt();
+        new FacadeEMAIL().submitAt();
 
         
-        // ajustar imagens do mail mark
-        // implementar mail facade
+
         // organizar classe de email
     }
 
