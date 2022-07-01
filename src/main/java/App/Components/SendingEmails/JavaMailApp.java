@@ -23,7 +23,7 @@ public abstract class JavaMailApp {
             Message message = startShippingSettings();
 
             // Remetente
-            message.setFrom(new InternetAddress(EmailAcess.USER));
+            message.setFrom(new InternetAddress(EmailAccess.USER));
 
             // lista de Destinatário(s)
             Address[] toUser = InternetAddress
@@ -52,7 +52,7 @@ public abstract class JavaMailApp {
             Message message = startShippingSettings();
 
             // remetente
-            message.setFrom(new InternetAddress(EmailAcess.USER));
+            message.setFrom(new InternetAddress(EmailAccess.USER));
 
             // destinatário (1)
             message.setRecipient(Message.RecipientType.TO,
@@ -109,7 +109,7 @@ public abstract class JavaMailApp {
         Session session = Session.getDefaultInstance(
                 props, new Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(EmailAcess.USER, EmailAcess.PASSWORD);
+                        return new PasswordAuthentication(EmailAccess.USER, EmailAccess.PASSWORD);
                     }
                 }
 
