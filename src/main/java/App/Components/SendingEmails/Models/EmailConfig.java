@@ -1,4 +1,6 @@
-package App.Components.SendingEmails;
+package App.Components.SendingEmails.Models;
+
+import App.Components.SendingEmails.Models.Private.EmailAccess;
 
 import java.io.File;
 

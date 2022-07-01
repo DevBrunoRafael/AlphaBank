@@ -3,7 +3,7 @@ package App.Components.GeneratePDFs;
 import App.Support.Utilities;
 import com.itextpdf.text.*;
 
-public class ConstantsPDF {
+public abstract class ConstantsPDF {
 
     // FONTES
     public static Font FONT_TITLE = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);

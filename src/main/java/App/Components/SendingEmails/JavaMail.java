@@ -1,6 +1,8 @@
 package App.Components.SendingEmails;
 
+import App.Components.SendingEmails.Models.EmailConfig;
 import App.Components.SendingEmails.Models.MailMarketing;
+import App.Components.SendingEmails.Models.Private.EmailAccess;
 
 import java.io.IOException;
 import java.util.Properties;
