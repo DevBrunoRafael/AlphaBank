@@ -1,4 +1,4 @@
-package App.Components.SendingEmails;
+package App.Components.SendingEmails.Models;
 
 public abstract class MailMarketing {
 
@@ -194,7 +194,7 @@ public abstract class MailMarketing {
                                             <img
                                               alt="Image"
                                               class="big"
-                                              src="images/logo.png"
+                                              src="https://github.com/DevBrunoRafael/AlphaBank/blob/master/src/main/java/App/Assets/logo.png"
                                               style="
                                                 display: block;
                                                 height: auto;
@@ -387,7 +387,7 @@ public abstract class MailMarketing {
                                             <img
                                               alt="Image"
                                               class="big"
-                                              src="images/illo.png"
+                                              src="https://github.com/DevBrunoRafael/AlphaBank/blob/master/src/main/java/App/Assets/illo.png"
                                               style="
                                                 display: block;
                                                 height: auto;
@@ -759,7 +759,7 @@ public abstract class MailMarketing {
                                                   ><img
                                                     alt="Instagram"
                                                     height="32"
-                                                    src="images/instagram2x.png"
+                                                    src="https://github.com/DevBrunoRafael/AlphaBank/blob/master/src/main/java/App/Assets/instagram2x.png"
                                                     style="
                                                       display: block;
                                                       height: auto;
@@ -776,7 +776,7 @@ public abstract class MailMarketing {
                                                   ><img
                                                     alt="Telegram"
                                                     height="32"
-                                                    src="images/telegram2x.png"
+                                                    src="https://github.com/DevBrunoRafael/AlphaBank/blob/master/src/main/java/App/Assets/telegram2x.png"
                                                     style="
                                                       display: block;
                                                       height: auto;
@@ -793,7 +793,7 @@ public abstract class MailMarketing {
                                                   ><img
                                                     alt="WhatsApp"
                                                     height="32"
-                                                    src="images/whatsapp2x.png"
+                                                    src="https://github.com/DevBrunoRafael/AlphaBank/blob/master/src/main/java/App/Assets/whatsapp2x.png"
                                                     style="
                                                       display: block;
                                                       height: auto;

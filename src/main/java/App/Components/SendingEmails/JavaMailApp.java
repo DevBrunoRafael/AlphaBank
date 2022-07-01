@@ -1,5 +1,7 @@
 package App.Components.SendingEmails;
 
+import App.Components.SendingEmails.Models.MailMarketing;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
@@ -18,7 +20,7 @@ public abstract class JavaMailApp {
 
         try {
 
-            Message message = startShippingSettings(EmailAcess.USER,EmailAcess.PASSWORD);
+            Message message = startShippingSettings();
 
             // Remetente
             message.setFrom(new InternetAddress(EmailAcess.USER));
@@ -47,7 +49,7 @@ public abstract class JavaMailApp {
 
         try {
 
-            Message message = startShippingSettings(EmailAcess.USER,EmailAcess.PASSWORD);;
+            Message message = startShippingSettings();
 
             // remetente
             message.setFrom(new InternetAddress(EmailAcess.USER));
@@ -95,7 +97,7 @@ public abstract class JavaMailApp {
     }
 
 
-    private static MimeMessage startShippingSettings(String user, String password){
+    private static MimeMessage startShippingSettings(/*String user, String password*/){
 
         Properties props = System.getProperties();
         props.put("mail.smtp.host", host);
@@ -107,7 +109,7 @@ public abstract class JavaMailApp {
         Session session = Session.getDefaultInstance(
                 props, new Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(user, password);
+                        return new PasswordAuthentication(EmailAcess.USER, EmailAcess.PASSWORD);
                     }
                 }
 

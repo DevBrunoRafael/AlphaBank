@@ -1,5 +1,6 @@
 package App.Client;
 
+import App.Components.SendingEmails.JavaMailApp;
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.AccountTypes.savingsAccount;
 import App.Components.GeneratePDFs.FacadePDF;
@@ -36,7 +37,13 @@ public class Main {
         account1.withdraw(147);
 
 
-        new FacadePDF(account1);
+        //new FacadePDF(account1);
+
+        JavaMailApp.sendMailWithAttachment(
+                "brunorafaeldls2016@gmail.com",
+                "Extrato",
+                " "
+        );
 
         
 
