@@ -2,7 +2,6 @@ package App.Components.SendingEmails;
 
 import App.Components.SendingEmails.Models.MailMarketing;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 import javax.mail.*;
@@ -11,28 +10,25 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public abstract class JavaMailApp {
+public abstract class JavaMail {
 
     private String sender; // atualmente o EmailAccess.USER ocupa essa posição
     private static final String host = "smtp.gmail.com";
 
-    public static void sendMail(String recipient, String subject, String text){
+    public static void sendMail(){
 
         try {
 
             Message message = startShippingSettings();
 
-            // Remetente
-            message.setFrom(new InternetAddress(EmailAccess.USER));
+            message.setFrom(new InternetAddress(EmailConfig.sender));
 
-            // lista de Destinatário(s)
-            Address[] toUser = InternetAddress
-                    .parse(recipient);
+            Address[] recipients = InternetAddress
+                    .parse(EmailConfig.recipient);
 
-
-            message.setRecipients(Message.RecipientType.TO, toUser);
-            message.setSubject(subject); // Assunto
-            message.setText(text); // mensagem
+            message.setRecipients(Message.RecipientType.TO, recipients);
+            message.setSubject(EmailConfig.subject);
+            message.setText(EmailConfig.message);
 
             System.out.println("enviando ...");
 
@@ -45,33 +41,29 @@ public abstract class JavaMailApp {
         }
     }
 
-    public static void sendMailWithAttachment(String recipient, String subject, String text){
+    public static void sendMailWithAttachment(){
 
         try {
 
             Message message = startShippingSettings();
 
-            // remetente
-            message.setFrom(new InternetAddress(EmailAccess.USER));
+            message.setFrom(new InternetAddress(EmailConfig.sender));
 
-            // destinatário (1)
             message.setRecipient(Message.RecipientType.TO,
-                    new InternetAddress(recipient)
+                    new InternetAddress(EmailConfig.recipient)
             );
 
-            message.setSubject(subject); // assunto (atribuir parâmetro na assinatura)
+            message.setSubject(EmailConfig.subject);
 
             Multipart multiPart = new MimeMultipart();
-            MimeBodyPart attachmentPart = new MimeBodyPart(); // anexo
-            MimeBodyPart textPart = new MimeBodyPart(); // texto
-            MimeBodyPart htmlText = new MimeBodyPart(); // texto
+            MimeBodyPart attachmentPart = new MimeBodyPart();
+            MimeBodyPart textPart = new MimeBodyPart();
+            MimeBodyPart htmlText = new MimeBodyPart();
 
             try {
 
-                File f = new File("C:/Users/Bruno Rafael/IdeaProjects/AlphaBank/src/main/java/App/Components/GeneratePDFs/File/Extrato(4).pdf");
-
-                attachmentPart.attachFile(f);
-                textPart.setText(text); // mensagem
+                attachmentPart.attachFile(EmailConfig.fileLocation);
+                textPart.setText(EmailConfig.message);
 
                 multiPart.addBodyPart(textPart);
                 multiPart.addBodyPart(attachmentPart);
@@ -87,7 +79,7 @@ public abstract class JavaMailApp {
 
             System.out.println("enviando ...");
 
-            Transport.send(message); // Enviar mensagem
+            Transport.send(message);
 
             System.out.println("Mensagem enviada com sucesso!");
 
@@ -97,7 +89,7 @@ public abstract class JavaMailApp {
     }
 
 
-    private static MimeMessage startShippingSettings(/*String user, String password*/){
+    private static MimeMessage startShippingSettings(){
 
         Properties props = System.getProperties();
         props.put("mail.smtp.host", host);

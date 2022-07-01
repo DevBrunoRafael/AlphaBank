@@ -1,9 +1,8 @@
 package App.Client;
 
-import App.Components.SendingEmails.JavaMailApp;
+import App.Components.SendingEmails.JavaMail;
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.AccountTypes.savingsAccount;
-import App.Components.GeneratePDFs.FacadePDF;
 import App.Entities.Customer.Client;
 
 
@@ -39,11 +38,7 @@ public class Main {
 
         //new FacadePDF(account1);
 
-        JavaMailApp.sendMailWithAttachment(
-                "brunorafaeldls2016@gmail.com",
-                "Extrato",
-                " "
-        );
+        JavaMail.sendMailWithAttachment();
 
         
         // ajustar imagens do mail mark
