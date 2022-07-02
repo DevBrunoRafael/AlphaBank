@@ -1,5 +1,6 @@
 package App.Components.SendingEmails.Models;
 
+import App.Components.GeneratePDFs.ConstantsPDF;
 import App.Components.SendingEmails.Models.Private.EmailAccess;
 
 import java.io.File;
@@ -12,7 +13,8 @@ public abstract class EmailConfig {
     public static String message = ""; // mail marketing sendo utilizado
     public static File fileLocation = new File(
             "C:/Users/Bruno Rafael/IdeaProjects/AlphaBank/src/main/java/"+
-                    "App/Components/GeneratePDFs/File/Extrato(4).pdf"
+                    "App/Components/GeneratePDFs/File/Extrato.pdf"
     );
 
+    // implementar id da conta no nome do pdf
 }

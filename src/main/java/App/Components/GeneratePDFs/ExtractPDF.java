@@ -28,7 +28,9 @@ public class ExtractPDF implements StructurePDF {
         this.account = account;
 
         try{
-            PdfWriter.getInstance(this.document, new FileOutputStream(ConstantsPDF.FILE_PDF));
+            PdfWriter.getInstance(
+                    this.document, new FileOutputStream(ConstantsPDF.FILE_PDF)
+            );
             document.open();
 
         } catch (DocumentException | FileNotFoundException e) {

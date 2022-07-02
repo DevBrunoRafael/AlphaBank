@@ -15,6 +15,9 @@ public abstract class Account {
     protected double balance; // inicia zerado
     protected List<ExtractLog> histLogs = new ArrayList<>();
 
+    // abstrair alguns métodos e implementar na classe que herda
+
+
 
 //   constructor ================================================================================================
     public Account(String numAccount, Client client) {

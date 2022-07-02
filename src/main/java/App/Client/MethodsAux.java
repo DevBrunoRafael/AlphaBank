@@ -33,7 +33,6 @@ public abstract class MethodsAux {
     }
 
     public static Account select(String numAccount){
-
         Account account = null;
 
         for (Account ac: accounts) {
@@ -52,7 +51,8 @@ public abstract class MethodsAux {
         }
     }
 
-    public static Account update(){
+    public static Account update(String numAccount){
+
         return null;
     }
 }

@@ -29,7 +29,7 @@ public abstract class ConstantsPDF {
 
     // !!!!!! Modificar
     static String str = ("C:/Users/Bruno Rafael/IdeaProjects/AlphaBank/src/main/java" +
-            "/App/Components/GeneratePDFs/File/Extrato(" + Utilities.CurrentTime().charAt(4) + ").pdf");
+            "/App/Components/GeneratePDFs/File/Extrato.pdf");
 
     public static final String FILE_PDF = str;
     // !!!!!! Modificar
