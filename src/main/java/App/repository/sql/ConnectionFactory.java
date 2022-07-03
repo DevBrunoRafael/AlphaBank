@@ -8,19 +8,15 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-    public static Connection getConnection(){
+    public static Connection getConnection() throws SQLException {
 
         String url = "jdbc:mysql://localhost:3306/mysql";
-        String username = AccessDB.USER;
-        String password = AccessDB.PASSWORD;
 
-        try {
-
-            return DriverManager.getConnection(url,username,password);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return DriverManager.getConnection(
+                url,
+                AccessDB.USER,
+                AccessDB.PASSWORD
+        );
     }
 
 

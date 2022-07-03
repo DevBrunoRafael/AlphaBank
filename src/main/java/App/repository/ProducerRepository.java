@@ -1,6 +1,6 @@
 package App.repository;
 
-public abstract class AccountDAO {
+public class ProducerRepository {
 
     public static void Insert(){
 
