@@ -217,5 +217,5 @@ public abstract class MailMarketing {
         </table><!-- End -->
        </body>
        </html>
-            """;
+     """;
 }

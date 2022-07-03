@@ -12,7 +12,7 @@ public abstract class Account {
 
     protected String numAccount;
     protected Client client;
-    protected double balance; // inicia zerado
+    protected double balance = 0; // inicia zerado
     protected List<ExtractLog> histLogs = new ArrayList<>();
 
     // abstrair alguns métodos e implementar na classe que herda
@@ -87,24 +87,23 @@ public abstract class Account {
     public String getNumAccount() {
         return numAccount;
     }
-    public Client getClient() {
-        return client;
-    }
-    public double getBalance() {
-        return balance;
-    }
-    public List<ExtractLog> getHistLogs() {
-        return histLogs;
-    }
-
     public void setNumAccount(String numAccount) {
         this.numAccount = numAccount;
+    }
+    public Client getClient() {
+        return client;
     }
     public void setClient(Client client) {
         this.client = client;
     }
+    public double getBalance() {
+        return balance;
+    }
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+    public List<ExtractLog> getHistLogs() {
+        return histLogs;
     }
     public void setHistLogs(List<ExtractLog> histLogs) {
         this.histLogs = histLogs;

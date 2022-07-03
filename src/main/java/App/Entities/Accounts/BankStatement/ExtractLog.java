@@ -12,6 +12,7 @@ import static App.Entities.Accounts.TypeOperations.*;
 
 public class ExtractLog {
 
+    private int idLog;
     private String numAccount;
     private String nameClient;
     private double value;
@@ -77,45 +78,52 @@ public class ExtractLog {
         return log.toString();
     }
 
+
+
+    public int getIdLog() {
+        return idLog;
+    }
+    public void setIdLog(int idLog) {
+        this.idLog = idLog;
+    }
     public String getNumAccount() {
         return numAccount;
+    }
+    public void setNumAccount(String numAccount) {
+        this.numAccount = numAccount;
     }
     public String getNameClient() {
         return nameClient;
     }
-    public double getValue() {
-        return value;
-    }
-    public TypeOperations getTypeOp() {
-        return typeOp;
-    }
-    public String getDate() {
-        return date;
-    }
-    public String getHours() {
-        return hours;
-    }
-    public String getSender_receiver() {
-        return sender_receiver;
-    }
-
-    public void setNumAccount(String numAccount) {
-        this.numAccount = numAccount;
-    }
     public void setNameClient(String nameClient) {
         this.nameClient = nameClient;
+    }
+    public double getValue() {
+        return value;
     }
     public void setValue(double value) {
         this.value = value;
     }
+    public TypeOperations getTypeOp() {
+        return typeOp;
+    }
     public void setTypeOp(TypeOperations typeOp) {
         this.typeOp = typeOp;
+    }
+    public String getDate() {
+        return date;
     }
     public void setDate(String date) {
         this.date = date;
     }
+    public String getHours() {
+        return hours;
+    }
     public void setHours(String hours) {
         this.hours = hours;
+    }
+    public String getSender_receiver() {
+        return sender_receiver;
     }
     public void setSender_receiver(String sender_receiver) {
         this.sender_receiver = sender_receiver;

@@ -5,7 +5,7 @@ import App.Components.SendingEmails.Models.Private.EmailAccess;
 
 import java.io.File;
 
-public abstract class EmailConfig {
+public class EmailConfig {
 
     public static String sender = EmailAccess.USER;
     public static String recipient = "brunorafaeldls2016@gmail.com";

@@ -1,4 +1,4 @@
-package App.DAO;
+package App.repository;
 
 public abstract class AccountDAO {
 

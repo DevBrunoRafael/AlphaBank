@@ -12,7 +12,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public abstract class JavaMail {
+public class JavaMail {
 
     private String sender; // atualmente o EmailAccess.USER ocupa essa posição
     private static final String host = "smtp.gmail.com";
@@ -99,6 +99,7 @@ public abstract class JavaMail {
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
+
 
         Session session = Session.getDefaultInstance(
                 props, new Authenticator() {

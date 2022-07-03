@@ -2,14 +2,11 @@ package App.Client;
 
 import App.Components.GeneratePDFs.FacadePDF;
 import App.Components.SendingEmails.FacadeEMAIL;
-import App.DataBase.sql.ConnectionFactory;
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.AccountTypes.currentAccount;
 import App.Entities.Accounts.AccountTypes.savingsAccount;
-import App.Entities.Accounts.BankStatement.ExtractLog;
 
 import java.text.NumberFormat;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -125,7 +122,10 @@ public class Main {
                                     }
                                 }
 
-                                case "5" -> rd2 = false;
+                                case "5" -> {
+                                    scanner.nextLine();
+                                    rd2 = false;
+                                }
                                 default -> System.out.println("Opção inválida!");
                             }
                         }

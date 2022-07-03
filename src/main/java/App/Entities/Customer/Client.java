@@ -17,24 +17,23 @@ public class Client {
     public String getName() {
         return name;
     }
-    public String getLastName() {
-        return lastName;
-    }
-    public String getBirthDate() {
-        return birthDate;
-    }
-    public String getCpf() {
-        return cpf;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+    public String getLastName() {
+        return lastName;
     }
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    public String getBirthDate() {
+        return birthDate;
+    }
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+    }
+    public String getCpf() {
+        return cpf;
     }
     public void setCpf(String cpf) {
         this.cpf = cpf;

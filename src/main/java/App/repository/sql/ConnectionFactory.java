@@ -1,6 +1,6 @@
-package App.DataBase.sql;
+package App.repository.sql;
 
-import App.DataBase.Private.AccessDB;
+import App.repository.Private.AccessDB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
