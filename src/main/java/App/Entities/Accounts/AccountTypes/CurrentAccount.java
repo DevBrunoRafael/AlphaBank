@@ -1,19 +1,23 @@
 package App.Entities.Accounts.AccountTypes;
 
 import App.Entities.Accounts.Account;
-import App.Entities.Accounts.BankStatement.ExtractLog;
+import App.Entities.Accounts.OperationsLogs.Log;
 import App.Entities.Accounts.Operations;
 import App.Entities.Accounts.TypeOperations;
 import App.Entities.Customer.Client;
 import App.Support.Utilities;
 
-public class currentAccount extends Account implements Operations {
+public class CurrentAccount extends Account implements Operations {
 
     private double limite; // a definir
 
 //   constructor ================================================================================================
-    public currentAccount(Client client) {
+    public CurrentAccount(Client client) {
         super(Utilities.generateId(1), client);
+    }
+
+    public CurrentAccount(String numAccount,Client client) {
+        super(numAccount, client);
     }
 //  =============================================================================================================
 
@@ -25,11 +29,17 @@ public class currentAccount extends Account implements Operations {
         if(value <= balance){
             super.subtractAccountValue(value);
             TypeOperations type = TypeOperations.WITHDRAW;
-            ExtractLog log = new ExtractLog(
-                    this.numAccount, this.client.getName(), value, type
+            Log log = new Log(
+                    this.numAccount,
+                    this.client.getName(),
+                    value,
+                    type,
+                    Utilities.CurrentDate(),
+                    Utilities.CurrentTime(),
+                    null
             );
 
-            histLogs.add(log);
+            historyLogs.add(log);
 
         }
         else if(value <= (balance + limite)){
@@ -38,11 +48,17 @@ public class currentAccount extends Account implements Operations {
             limite = limite - valueExceeded;
 
             TypeOperations type = TypeOperations.WITHDRAW;
-            ExtractLog log = new ExtractLog(
-                    this.numAccount, this.client.getName(), value, type
+            Log log = new Log(
+                    this.numAccount,
+                    this.client.getName(),
+                    value,
+                    type,
+                    Utilities.CurrentDate(),
+                    Utilities.CurrentTime(),
+                    null
             );
 
-            histLogs.add(log);
+            historyLogs.add(log);
 
         }
         else {
@@ -57,11 +73,17 @@ public class currentAccount extends Account implements Operations {
             receiver.setSaldoTransfer(this.client.getName(), value);
 
             TypeOperations type = TypeOperations.TRANSFER_SENT;
-            ExtractLog log = new ExtractLog(
-                    this.numAccount, this.client.getName(), value, type, receiver.getClient().getName()
+            Log log = new Log(
+                    this.numAccount,
+                    this.client.getName(),
+                    value,
+                    type,
+                    Utilities.CurrentDate(),
+                    Utilities.CurrentTime(),
+                    receiver.getClient().getName()
             );
 
-            histLogs.add(log);
+            historyLogs.add(log);
 
         }
         else if(value <= (balance + limite)){
@@ -71,11 +93,17 @@ public class currentAccount extends Account implements Operations {
             receiver.setSaldoTransfer(this.client.getName(), value);
 
             TypeOperations type = TypeOperations.TRANSFER_SENT;
-            ExtractLog log = new ExtractLog(
-                    this.numAccount, this.client.getName(), value, type, receiver.getClient().getName()
+            Log log = new Log(
+                    this.numAccount,
+                    this.client.getName(),
+                    value,
+                    type,
+                    Utilities.CurrentDate(),
+                    Utilities.CurrentTime(),
+                    receiver.getClient().getName()
             );
 
-            histLogs.add(log);
+            historyLogs.add(log);
 
         }
         else {

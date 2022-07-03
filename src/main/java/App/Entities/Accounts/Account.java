@@ -1,7 +1,8 @@
 package App.Entities.Accounts;
 
-import App.Entities.Accounts.BankStatement.ExtractLog;
+import App.Entities.Accounts.OperationsLogs.Log;
 import App.Entities.Customer.Client;
+import App.Support.Utilities;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public abstract class Account {
     protected String numAccount;
     protected Client client;
     protected double balance = 0; // inicia zerado
-    protected List<ExtractLog> histLogs = new ArrayList<>();
+    protected List<Log> historyLogs = new ArrayList<>();
 
     // abstrair alguns métodos e implementar na classe que herda
 
@@ -33,11 +34,17 @@ public abstract class Account {
         balance += value;
 
         TypeOperations type = TypeOperations.DEPOSIT;
-        ExtractLog log = new ExtractLog(
-            this.numAccount, this.client.getName(), value, type
+        Log log = new Log(
+                this.numAccount,
+                this.client.getName(),
+                value,
+                type,
+                Utilities.CurrentDate(),
+                Utilities.CurrentTime(),
+                null
         );
 
-        histLogs.add(log);
+        historyLogs.add(log);
     }
 
     public void withdraw(double value) throws Exception {
@@ -45,11 +52,17 @@ public abstract class Account {
             this.subtractAccountValue(value);
 
             TypeOperations type = TypeOperations.WITHDRAW;
-            ExtractLog log = new ExtractLog(
-                    this.numAccount, this.client.getName(), value, type
+            Log log = new Log(
+                    this.numAccount,
+                    this.client.getName(),
+                    value,
+                    type,
+                    Utilities.CurrentDate(),
+                    Utilities.CurrentTime(),
+                    null
             );
 
-            histLogs.add(log);
+            historyLogs.add(log);
 
         } else {
             throw new Exception("Erro: saldo insuficientes para saque.");
@@ -63,11 +76,17 @@ public abstract class Account {
             receiver.setSaldoTransfer(this.client.getName(), value);
 
             TypeOperations type = TypeOperations.TRANSFER_SENT;
-            ExtractLog log = new ExtractLog(
-                    this.numAccount, this.client.getName(), value, type, receiver.getClient().getName()
+            Log log = new Log(
+                    this.numAccount,
+                    this.client.getName(),
+                    value,
+                    type,
+                    Utilities.CurrentDate(),
+                    Utilities.CurrentTime(),
+                    receiver.getClient().getName()
             );
 
-            histLogs.add(log);
+            historyLogs.add(log);
 
         } else {
             throw new Exception("Erro: saldo e limite insuficientes para transferência.");
@@ -76,7 +95,7 @@ public abstract class Account {
 
 
     public void generateExtract() throws Exception {
-        List<ExtractLog> hist = histLogs;
+        List<Log> hist = historyLogs;
         hist.forEach(System.out::println);
 
         // alterar posteriormente
@@ -103,25 +122,31 @@ public abstract class Account {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-    public List<ExtractLog> getHistLogs() {
-        return histLogs;
+    public List<Log> getHistoryLogs() {
+        return historyLogs;
     }
-    public void setHistLogs(List<ExtractLog> histLogs) {
-        this.histLogs = histLogs;
+    public void setHistoryLogs(List<Log> historyLogs) {
+        this.historyLogs = historyLogs;
     }
     //  ===========================================================================================================
 
 
 //  auxiliary method ==========================================================================================
-    public void setSaldoTransfer(String sender, double valor){
-        this.balance += valor;
+    public void setSaldoTransfer(String sender, double value){
+        this.balance += value;
 
         TypeOperations type = TypeOperations.TRANSFER_RECEIVED;
-        ExtractLog log = new ExtractLog(
-                this.numAccount, this.client.getName(), valor, type, sender
+        Log log = new Log(
+                this.numAccount,
+                this.client.getName(),
+                value,
+                type,
+                Utilities.CurrentDate(),
+                Utilities.CurrentTime(),
+                sender
         );
 
-        histLogs.add(log);
+        historyLogs.add(log);
     }
 
     protected void subtractAccountValue(double value){

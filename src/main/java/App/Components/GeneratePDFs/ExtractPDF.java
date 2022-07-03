@@ -1,7 +1,7 @@
 package App.Components.GeneratePDFs;
 
 import App.Entities.Accounts.Account;
-import App.Entities.Accounts.BankStatement.ExtractLog;
+import App.Entities.Accounts.OperationsLogs.Log;
 import App.Support.Utilities;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Image;
@@ -129,7 +129,7 @@ public class ExtractPDF implements StructurePDF {
             table.addCell(cell);
         });
 
-        this.account.getHistLogs().forEach(fill -> {
+        this.account.getHistoryLogs().forEach(fill -> {
 
             if(fill.getSender_receiver() != null){
 
@@ -228,7 +228,7 @@ public class ExtractPDF implements StructurePDF {
 
 
 /*    auxiliary methods ================================================================================*/
-    private void generateCells(PdfPTable table, ExtractLog fill) {
+    private void generateCells(PdfPTable table, Log fill) {
         PdfPCell cell = new PdfPCell(new Phrase(fill.getDate(),ConstantsPDF.FONT_CELL_BODY));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
@@ -245,7 +245,7 @@ public class ExtractPDF implements StructurePDF {
         table.addCell(cell);
     }
 
-    private void fillWithAddingValues(PdfPTable table, ExtractLog fill) {
+    private void fillWithAddingValues(PdfPTable table, Log fill) {
         generateCells(table, fill);
         PdfPCell cell;
 
@@ -258,7 +258,7 @@ public class ExtractPDF implements StructurePDF {
         table.addCell(cell);
     }
 
-    private void fillWithSubtractionOfValues(PdfPTable table, ExtractLog fill) {
+    private void fillWithSubtractionOfValues(PdfPTable table, Log fill) {
         generateCells(table, fill);
         PdfPCell cell;
 

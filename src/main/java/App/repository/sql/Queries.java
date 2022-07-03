@@ -21,7 +21,7 @@ public class Queries {
 
 
     public static final String INSERT_LOGS =
-            "insert into log (nome_cliente, valor, tipo_op, data, horario, rem_dest, num_conta) values(?,?,?,?,?,?,?');";
+            "insert into log (nome_cliente, valor, tipo_op, data, horario, rem_dest, num_conta) values(?,?,?,?,?,?,?);";
     public static final String SELECT_LOGS =
             "SELECT * FROM tech_bank.log where num_conta = ?;";
     public static final String DELETE_LOGS =

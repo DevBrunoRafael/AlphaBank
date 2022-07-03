@@ -1,8 +1,12 @@
 package App.Support;
 
+import App.Entities.Accounts.TypeOperations;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+
+import static App.Entities.Accounts.TypeOperations.*;
 
 public abstract class Utilities {
 
@@ -36,6 +40,18 @@ public abstract class Utilities {
 
     public static String TypeChecker(String numAccount){
         return numAccount.charAt(9) == '3' ? "Poupança" : "Corrente";
+    }
+
+    public static TypeOperations ConvertToEnumTypeOp(String op){
+
+        TypeOperations tp = null;
+
+        if (DEPOSIT.getOperation().equals(op)) tp = DEPOSIT;
+        else if (WITHDRAW.getOperation().equals(op)) tp =  WITHDRAW;
+        else if (TRANSFER_SENT.getOperation().equals(op)) tp = TRANSFER_SENT;
+        else if (TRANSFER_RECEIVED.getOperation().equals(op)) tp = TRANSFER_RECEIVED;
+
+        return tp;
     }
 
 }

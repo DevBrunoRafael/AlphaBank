@@ -5,13 +5,16 @@ import App.Entities.Accounts.Operations;
 import App.Entities.Customer.Client;
 import App.Support.Utilities;
 
-public class savingsAccount extends Account implements Operations {
+public class SavingsAccount extends Account implements Operations {
 
     private double interest = 0;
 
 //   constructor ================================================================================================
-    public savingsAccount(Client client) {
+    public SavingsAccount(Client client) {
         super(Utilities.generateId(0), client);
+    }
+    public SavingsAccount(String numAccount, Client client) {
+        super(numAccount, client);
     }
 //  =============================================================================================================
 

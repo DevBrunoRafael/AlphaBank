@@ -1,9 +1,8 @@
 package App.repository;
 
 import App.Entities.Accounts.Account;
-import App.Entities.Accounts.AccountTypes.currentAccount;
-import App.Entities.Accounts.AccountTypes.savingsAccount;
-import App.Entities.Customer.Client;
+import App.Entities.Accounts.AccountTypes.CurrentAccount;
+import App.Entities.Accounts.AccountTypes.SavingsAccount;
 import App.Support.Utilities;
 import App.repository.sql.ConnectionFactory;
 import App.repository.sql.Queries;
@@ -35,43 +34,43 @@ public class AccountRepository {
     }
 
     public static Account Search(String numAc){
-            Account account = null;
+        Account account = null;
 
-            try {
-                Connection con = ConnectionFactory.getConnection();
-                PreparedStatement stat = con.prepareStatement(Queries.SELECT_ACCOUNT);
-                stat.setString(1, numAc);
-                ResultSet rs = stat.executeQuery();
+        try {
+            Connection con = ConnectionFactory.getConnection();
+            PreparedStatement stat = con.prepareStatement(Queries.SELECT_ACCOUNT);
+            stat.setString(1, numAc);
+            ResultSet rs = stat.executeQuery();
 
-                if(rs.next()){
+            if(rs.next()){
 
-                    String type = rs.getString("num_conta");
-                    String client = rs.getString("cpf_cliente");
-                    double balance = rs.getDouble("saldo");
+                String type = rs.getString("num_conta");
+                String client = rs.getString("cpf_cliente");
+                double balance = rs.getDouble("saldo");
 
-                    switch (Utilities.TypeChecker(type)){
+                switch (Utilities.TypeChecker(type)){
 
-                        case "Poupança" -> {
-                            account = new savingsAccount(ClientRepository.Search(client));
-                            account.setBalance(balance);
-                        }
-
-                        case "Corrente" -> {
-                            account = new currentAccount(ClientRepository.Search(client));
-                            account.setBalance(balance);
-                        }
-
+                    case "Poupança" -> {
+                        account = new SavingsAccount(type,ClientRepository.Search(client));
+                        account.setBalance(balance);
                     }
+
+                    case "Corrente" -> {
+                        account = new CurrentAccount(type,ClientRepository.Search(client));
+                        account.setBalance(balance);
+                    }
+
                 }
-
-                stat.close();
-                con.close();
-
-            } catch (SQLException ex){
-                System.out.println(ex.getMessage());
             }
 
-            return account;
+            stat.close();
+            con.close();
+
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+
+        return account;
     }
 
     public static void Update(){

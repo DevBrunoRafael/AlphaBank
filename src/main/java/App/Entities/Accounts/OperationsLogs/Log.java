@@ -1,16 +1,14 @@
-package App.Entities.Accounts.BankStatement;
+package App.Entities.Accounts.OperationsLogs;
 
 import App.Entities.Accounts.TypeOperations;
 import App.Support.Utilities;
 
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import static App.Entities.Accounts.TypeOperations.*;
 
-public class ExtractLog {
+public class Log {
 
     private int idLog;
     private String numAccount;
@@ -19,35 +17,38 @@ public class ExtractLog {
     private TypeOperations typeOp;
     private String date;
     private String hours;
+    private String sender_receiver;
 
-    protected String sender_receiver;
-
-
-    public ExtractLog(String numAccount, String nameClient, double value, TypeOperations typeOp) {
+    // para o db
+    public Log(String numAccount, String nameClient, double value, TypeOperations typeOp, String date, String hours, String sender_receiver) {
         this.numAccount = numAccount;
         this.nameClient = nameClient;
         this.value = value;
         this.typeOp = typeOp;
-        this.date = Utilities.CurrentDate();
-        this.hours = Utilities.CurrentTime();
-    }
-
-    public ExtractLog(String numAccount, String nameClient, double value, TypeOperations typeOp, String sender_receiver) {
-        this.numAccount = numAccount;
-        this.nameClient = nameClient;
-        this.value = value;
-        this.typeOp = typeOp;
+        this.date = date;
+        this.hours = hours;
         this.sender_receiver = sender_receiver;
-        this.date = Utilities.CurrentDate();
-        this.hours = Utilities.CurrentTime();
     }
 
+    // de volta do db
+    public Log(int idLog, String numAccount, String nameClient, double value, TypeOperations typeOp, String date, String hours, String sender_receiver) {
+        this.idLog = idLog;
+        this.numAccount = numAccount;
+        this.nameClient = nameClient;
+        this.value = value;
+        this.typeOp = typeOp;
+        this.date = date;
+        this.hours = hours;
+        this.sender_receiver = sender_receiver;
+    }
 
     public String toString(){
 
         Locale ptBr = new Locale("pt", "BR");
 
-        StringBuilder log = new StringBuilder("\n" + date + "\t" + hours + "\tOp: ");
+        StringBuilder log = new StringBuilder(
+                "\n"+ idLog + "\t" + numAccount + "\t" + nameClient + "\t" + date + "\t" + hours + "\tOp: "
+        );
 
         switch (this.typeOp){
             case DEPOSIT -> log
