@@ -10,7 +10,7 @@ public class ConnectionFactory {
 
     public static Connection getConnection() throws SQLException {
 
-        String url = "jdbc:mysql://localhost:3306/mysql";
+        String url = "jdbc:mysql://localhost:3306/tech_bank";
 
         return DriverManager.getConnection(
                 url,
