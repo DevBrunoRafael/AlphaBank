@@ -6,6 +6,7 @@ import App.Entities.Accounts.Account;
 import App.Entities.Accounts.AccountTypes.currentAccount;
 import App.Entities.Accounts.AccountTypes.savingsAccount;
 import App.Entities.Customer.Client;
+import App.repository.AccountRepository;
 import App.repository.ClientRepository;
 
 import java.text.NumberFormat;
@@ -17,10 +18,16 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         boolean rd1 = true;
-//        Client c1 = new Client("Bruno","Rafael", "20/09/2002", "092.426.815-80");
-//        System.out.println(ClientRepository.Insert(c1));
 
-//        System.out.println(ClientRepository.Search("092.426.815-80"));
+//        Client c1 = new Client("Bruno","Rafael", "20/09/2002", "092.426.815-80");
+//        System.out.println("Cliente: " + ClientRepository.Insert(c1));
+//
+//        Account ac = new currentAccount(c1);
+//        System.out.println("Conta: " + AccountRepository.Insert(ac));
+
+        System.out.println(AccountRepository.Search("1282508-05"));
+
+
 
 
 

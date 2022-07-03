@@ -1,8 +1,5 @@
 package App.Entities.Customer;
 
-import lombok.Data;
-
-
 public class Client {
 
     private String name;

@@ -34,4 +34,8 @@ public abstract class Utilities {
         return text.toString();
     }
 
+    public static String TypeChecker(String numAccount){
+        return numAccount.charAt(9) == '3' ? "Poupança" : "Corrente";
+    }
+
 }

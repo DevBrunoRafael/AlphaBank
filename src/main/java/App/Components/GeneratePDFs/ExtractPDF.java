@@ -80,7 +80,7 @@ public class ExtractPDF implements StructurePDF {
                 new Chunk("Tipo: ", ConstantsPDF.FONT_SUBTITLE_FIELD_I)
         );
         numAccount.add(
-                new Phrase(typeChecker(this.account.getNumAccount()),ConstantsPDF.FONT_SUBTITLE_FILL_I)
+                new Phrase(Utilities.TypeChecker(this.account.getNumAccount()),ConstantsPDF.FONT_SUBTITLE_FILL_I)
         );
 
         Paragraph client = new Paragraph();
@@ -264,15 +264,12 @@ public class ExtractPDF implements StructurePDF {
 
         cell = new PdfPCell(new Phrase(
                 "-" +
-                NumberFormat.getCurrencyInstance(ptBr).format(fill.getValue()),
+                        NumberFormat.getCurrencyInstance(ptBr).format(fill.getValue()),
                 ConstantsPDF.FONT_RED
         ));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setBorderWidth(ConstantsPDF.BORDER_CELL);
         table.addCell(cell);
-    }
-    private String typeChecker(String numAccount){
-        return numAccount.charAt(9) == '3' ? "Poupança" : "Corrente";
     }
 
 
