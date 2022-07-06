@@ -17,27 +17,36 @@ import java.util.List;
 public class MainAux {
     public static void main(String[] args) throws Exception {
 
-        Client c1 = new Client("Bruno","Rafael", "20/09/2002", "092.426.815-80");
-        System.out.println("Cliente: " + ClientRepository.Insert(c1));
+//        Client c1 = new Client("Bruno","Rafael", "20/09/2002", "092.426.815-80");
+//        System.out.println("Cliente: " + ClientRepository.Insert(c1));
+//
+//        Account ac = new CurrentAccount(c1);
+//        System.out.println("Conta: " + AccountRepository.Insert(ac));
+//
+//        System.out.println(ac);
+//        ac.deposit(200);
+//        ac.withdraw(50);
+//        ac.deposit(200);
+//        ac.withdraw(100);
+//        ac.withdraw(100);
+//        ac.deposit(100);
+//        ac.withdraw(100);
+//
+//        LogRepository.Insert(ac.getHistoryLogs());
+//
+//        List<Log> logs = LogRepository.Search(ac.getNumAccount());
+//        logs.forEach(System.out::println);
 
-        Account ac = new CurrentAccount(c1);
-        System.out.println("Conta: " + AccountRepository.Insert(ac));
+        Account c = AccountRepository.Search("1618441-05");
+        System.out.println(c);
 
-        System.out.println(ac);
-        ac.deposit(200);
-        ac.withdraw(50);
-        ac.deposit(200);
-        ac.withdraw(100);
+        List<Log> logs = LogRepository.Search(c.getNumAccount());
+        c.setHistoryLogs(logs);
 
-        LogRepository.Insert(ac.getHistoryLogs());
-
-        List<Log> logs = LogRepository.Search(ac.getNumAccount());
         logs.forEach(System.out::println);
 
-//        Account c = AccountRepository.Search("1362431-05");
-//        System.out.println(c);
-//
-//        List<Log> logs = LogRepository.Search(c.getNumAccount());
+        //new FacadePDF(c);
+        new FacadeEMAIL().submitAt();
 
 
 

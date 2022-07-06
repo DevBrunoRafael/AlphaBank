@@ -47,11 +47,7 @@ public class ExtractPDF implements StructurePDF {
         img.setAlignment(Element.ALIGN_CENTER);
         this.document.add(img);
 
-
-        this.document.add(new Paragraph(" "));
-        this.document.add(new Paragraph(" "));
-        this.document.add(new Paragraph(" "));
-
+        skipLines(3);
 
         Paragraph title = new Paragraph();
         title.setAlignment(Element.ALIGN_CENTER);
@@ -60,10 +56,7 @@ public class ExtractPDF implements StructurePDF {
         );
         this.document.add(title);
 
-
-        this.document.add(new Paragraph(" "));
-        this.document.add(new Paragraph(" "));
-
+        skipLines(2);
         
         Paragraph numAccount = new Paragraph();
         numAccount.setAlignment(Element.ALIGN_LEFT);
@@ -99,8 +92,7 @@ public class ExtractPDF implements StructurePDF {
     @Override
     public void body() throws DocumentException {
 
-        this.document.add(new Paragraph(" "));
-        this.document.add(new Paragraph(" "));
+        skipLines(2);
 
         PdfPTable table = new PdfPTable(
                 new float[]{0.15f, 0.15f, 0.25f, 0.2f, 0.3f}
@@ -178,14 +170,9 @@ public class ExtractPDF implements StructurePDF {
             }
         });
 
-
         this.document.add(table);
 
-
-
-        this.document.add(new Paragraph(" "));
-        this.document.add(new Paragraph(" "));
-
+        skipLines(2);
 
         Paragraph balance = new Paragraph();
         balance.setAlignment(Element.ALIGN_RIGHT);
@@ -195,11 +182,13 @@ public class ExtractPDF implements StructurePDF {
         ));
         this.document.add(balance);
 
+        skipLines(2);
+    }
 
-        this.document.add(new Paragraph(" "));
-        this.document.add(new Paragraph(" "));
-
-
+    private void skipLines(int rows) throws DocumentException {
+        for (int i = 0; i < rows; i++) {
+            this.document.add(new Paragraph(" "));
+        }
     }
 
     @Override
