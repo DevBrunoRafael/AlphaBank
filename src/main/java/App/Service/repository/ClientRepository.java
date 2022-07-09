@@ -1,8 +1,8 @@
-package App.service.repository;
+package App.Service.repository;
 
 import App.Entities.Customer.Client;
-import App.service.sql.ConnectionFactory;
-import App.service.sql.Queries;
+import App.Service.sql.ConnectionFactory;
+import App.Service.sql.Queries;
 
 import java.sql.*;
 

@@ -1,7 +1,7 @@
-package App.service;
+package App.Service;
 
 import App.Entities.Accounts.Account;
-import App.service.repository.AccountRepository;
+import App.Service.repository.AccountRepository;
 
 public class AccountService {
 

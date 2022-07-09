@@ -1,7 +1,7 @@
-package App.service;
+package App.Service;
 
 import App.Entities.Accounts.OperationsLogs.Log;
-import App.service.repository.LogRepository;
+import App.Service.repository.LogRepository;
 
 import java.util.List;
 
