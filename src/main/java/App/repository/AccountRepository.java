@@ -7,10 +7,7 @@ import App.Support.Utilities;
 import App.repository.sql.ConnectionFactory;
 import App.repository.sql.Queries;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class AccountRepository {
 
@@ -73,9 +70,26 @@ public class AccountRepository {
         return account;
     }
 
-    public static void Update(){
+    public static boolean Update(Account account){
+        int rowsAffected = 0;
 
+        try {
+            Connection con = ConnectionFactory.getConnection();
+            PreparedStatement stat = con.prepareStatement(Queries.UPDATE_ACCOUNT);
+            stat.setDouble(1, account.getBalance());
+            stat.setString(2, account.getNumAccount());
+            rowsAffected = stat.executeUpdate();
+
+            stat.close();
+            con.close();
+
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return rowsAffected > 0;
     }
+
 
     public static void Remove(){
 
