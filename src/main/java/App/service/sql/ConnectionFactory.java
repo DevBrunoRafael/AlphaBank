@@ -1,6 +1,6 @@
 package App.service.sql;
 
-import App.Private.AccessDB;
+import App.Private.DataBaseAccess;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,8 +14,8 @@ public class ConnectionFactory {
 
         return DriverManager.getConnection(
                 url,
-                AccessDB.USER,
-                AccessDB.PASSWORD
+                DataBaseAccess.USER,
+                DataBaseAccess.PASSWORD
         );
     }
 
