@@ -1,11 +1,11 @@
-package App.repository;
+package App.service.repository;
 
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.AccountTypes.CurrentAccount;
 import App.Entities.Accounts.AccountTypes.SavingsAccount;
 import App.Support.Utilities;
-import App.repository.sql.ConnectionFactory;
-import App.repository.sql.Queries;
+import App.service.sql.ConnectionFactory;
+import App.service.sql.Queries;
 
 import java.sql.*;
 

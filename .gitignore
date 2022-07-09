@@ -1,3 +1,5 @@
-/src/main/java/App/Components/SendingEmails/Models/Private/EmailAccess.java
 /src/main/java/App/Assets/linksImages/linksImg.txt
-/src/main/java/App/repository/Private/AccessDB.java
+
+/src/main/java/App/Private/AccessDB.java
+/src/main/java/App/Private/EmailAccess.java
+/src/main/java/App/Private

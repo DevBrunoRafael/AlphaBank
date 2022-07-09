@@ -1,7 +1,6 @@
 package App.Components.SendingEmails.Models;
 
-import App.Components.GeneratePDFs.ConstantsPDF;
-import App.Components.SendingEmails.Models.Private.EmailAccess;
+import App.Private.EmailAccess;
 
 import java.io.File;
 

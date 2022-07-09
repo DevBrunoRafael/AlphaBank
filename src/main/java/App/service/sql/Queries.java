@@ -1,4 +1,4 @@
-package App.repository.sql;
+package App.service.sql;
 
 public class Queries {
 

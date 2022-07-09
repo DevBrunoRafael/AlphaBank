@@ -5,15 +5,8 @@ import App.Components.SendingEmails.FacadeEMAIL;
 import App.Entities.Accounts.Account;
 import App.Entities.Accounts.AccountTypes.CurrentAccount;
 import App.Entities.Accounts.AccountTypes.SavingsAccount;
-import App.Entities.Accounts.OperationsLogs.Log;
-import App.Entities.Accounts.TypeOperations;
-import App.Entities.Customer.Client;
-import App.repository.AccountRepository;
-import App.repository.ClientRepository;
-import App.repository.LogRepository;
 
 import java.text.NumberFormat;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -109,9 +102,9 @@ public class Main {
                                         }
                                     }
                                 }
-                                case "2" -> {
+                                case "2" ->
                                     System.out.println("Implementar...");
-                                }
+
                                 case "3" -> {
                                     Locale ptBr = new Locale("pt", "BR");
                                     System.out.println("Saldo: " +
@@ -139,9 +132,9 @@ public class Main {
                         }
                     } else System.out.println("Conta não encontrada!");
                 }
-                case "3" -> {
+                case "3" ->
                     System.out.println("implementar...");
-                }
+
                 case "4" -> rd1 = false;
 
                 default -> System.out.println("Opção inválida!");

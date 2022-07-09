@@ -1,9 +1,9 @@
-package App.repository;
+package App.service.repository;
 
 import App.Entities.Accounts.OperationsLogs.Log;
 import App.Support.Utilities;
-import App.repository.sql.ConnectionFactory;
-import App.repository.sql.Queries;
+import App.service.sql.ConnectionFactory;
+import App.service.sql.Queries;
 
 import java.sql.*;
 import java.util.ArrayList;

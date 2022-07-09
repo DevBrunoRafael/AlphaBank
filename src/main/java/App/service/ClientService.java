@@ -1,7 +1,7 @@
-package App.repository.service;
+package App.service;
 
 import App.Entities.Customer.Client;
-import App.repository.ClientRepository;
+import App.service.repository.ClientRepository;
 
 public class ClientService {
 
