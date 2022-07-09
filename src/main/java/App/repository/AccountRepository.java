@@ -90,8 +90,7 @@ public class AccountRepository {
         return rowsAffected > 0;
     }
 
-
     public static void Remove(){
-
+        // implementar para adm
     }
 }
