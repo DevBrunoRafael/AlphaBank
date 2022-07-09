@@ -11,7 +11,7 @@ import java.util.List;
 
 public class LogRepository {
 
-    public static boolean Insert(List<Log> logs){
+    public boolean insert(List<Log> logs){
 
         int rowsAffected = 0;
 
@@ -47,7 +47,7 @@ public class LogRepository {
         return rowsAffected > 0;
     }
 
-    public static List<Log> Search(String numAc){
+    public List<Log> search(String numAc){
 
         List<Log> logs = new ArrayList<>();
 
@@ -82,7 +82,7 @@ public class LogRepository {
         return logs;
     }
 
-    public static void Remove(){
+    public void remove(){
         // implementar para adm
     }
 }

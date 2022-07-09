@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class ClientRepository {
 
-    public static boolean insert(Client client){ //
+    public boolean insert(Client client){ //
         try {
             Connection con = ConnectionFactory.getConnection();
             PreparedStatement stat = con.prepareStatement(Queries.INSERT_CLIENT);
@@ -29,7 +29,7 @@ public class ClientRepository {
         return false;
     }
 
-    public static Client search(String _cpf){
+    public Client search(String _cpf){
         Client client = null;
 
         try {
@@ -58,7 +58,7 @@ public class ClientRepository {
         return client;
     }
 
-    public static void remove(String cpf){
+    public void remove(String cpf){
         // implementar para adm
     }
 

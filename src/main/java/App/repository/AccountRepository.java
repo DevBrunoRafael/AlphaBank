@@ -11,7 +11,7 @@ import java.sql.*;
 
 public class AccountRepository {
 
-    public static boolean insert(Account account){
+    public boolean insert(Account account){
         try {
             Connection con = ConnectionFactory.getConnection();
             PreparedStatement stat = con.prepareStatement(Queries.INSERT_ACCOUNT);
@@ -30,7 +30,7 @@ public class AccountRepository {
         return false;
     }
 
-    public static Account search(String numAc){
+    public Account search(String numAc){
         Account account = null;
 
         try {
@@ -48,12 +48,12 @@ public class AccountRepository {
                 switch (Utilities.TypeChecker(type)){
 
                     case "Poupança" -> {
-                        account = new SavingsAccount(type,ClientRepository.search(client));
+                        account = new SavingsAccount(type,new ClientRepository().search(client));
                         account.setBalance(balance);
                     }
 
                     case "Corrente" -> {
-                        account = new CurrentAccount(type,ClientRepository.search(client));
+                        account = new CurrentAccount(type,new ClientRepository().search(client));
                         account.setBalance(balance);
                     }
 
@@ -70,7 +70,7 @@ public class AccountRepository {
         return account;
     }
 
-    public static boolean update(Account account){
+    public boolean update(Account account){
         int rowsAffected = 0;
 
         try {
@@ -90,7 +90,7 @@ public class AccountRepository {
         return rowsAffected > 0;
     }
 
-    public static void Remove(){
+    public void Remove(){
         // implementar para adm
     }
 }
