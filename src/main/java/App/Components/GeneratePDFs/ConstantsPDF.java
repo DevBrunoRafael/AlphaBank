@@ -1,6 +1,5 @@
 package App.Components.GeneratePDFs;
 
-import App.Support.Utilities;
 import com.itextpdf.text.*;
 
 public abstract class ConstantsPDF {
@@ -23,19 +22,17 @@ public abstract class ConstantsPDF {
             Font.FontFamily.HELVETICA, 10, Font.NORMAL, BaseColor.BLACK.darker()
     );
 
-    // DIRECTORIES
-    public static final String IMAGE = "C:/Users/Bruno Rafael/IdeaProjects/AlphaBank/src/main/java/App/Assets/logo.png";
-
-
-    // !!!!!! Modificar
-    static String str = ("C:/Users/Bruno Rafael/IdeaProjects/AlphaBank/src/main/java" +
-            "/App/Components/GeneratePDFs/File/Extrato.pdf");
-
-    public static final String FILE_PDF = str;
-    // !!!!!! Modificar
-
-
     // TABLE
-    public static final float BORDER_CELL = (float) 0.001;
+    public static float BORDER_CELL = (float) 0.001;
+
+    // DIRECTORIES
+    public static String IMAGE = "C:/Users/Bruno Rafael/IdeaProjects/AlphaBank/src/main/java/App/Assets/logo.png";
+
+    public static String directory(String number){
+        return "C:/Users/Bruno Rafael/IdeaProjects/AlphaBank/src/main/java" +
+                "/App/Components/GeneratePDFs/File/Extrato acN°"+ number +".pdf";
+    }
+
+
 
 }

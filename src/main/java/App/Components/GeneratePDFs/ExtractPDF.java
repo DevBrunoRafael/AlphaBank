@@ -29,7 +29,7 @@ public class ExtractPDF implements StructurePDF {
 
         try{
             PdfWriter.getInstance(
-                    this.document, new FileOutputStream(ConstantsPDF.FILE_PDF)
+                    this.document, new FileOutputStream(ConstantsPDF.directory(account.getNumAccount()))
             );
             document.open();
 
@@ -185,12 +185,6 @@ public class ExtractPDF implements StructurePDF {
         skipLines(2);
     }
 
-    private void skipLines(int rows) throws DocumentException {
-        for (int i = 0; i < rows; i++) {
-            this.document.add(new Paragraph(" "));
-        }
-    }
-
     @Override
     public void footer() throws DocumentException {
         Paragraph div = new Paragraph(
@@ -211,7 +205,7 @@ public class ExtractPDF implements StructurePDF {
     public void printOut() throws IOException {
         if (this.document.isOpen()){
             this.document.close();
-            Desktop.getDesktop().open(new File(ConstantsPDF.FILE_PDF));
+            Desktop.getDesktop().open(new File(ConstantsPDF.directory(account.getNumAccount())));
         }
     }
 
@@ -261,7 +255,11 @@ public class ExtractPDF implements StructurePDF {
         table.addCell(cell);
     }
 
-
+    private void skipLines(int rows) throws DocumentException {
+        for (int i = 0; i < rows; i++) {
+            this.document.add(new Paragraph(" "));
+        }
+    }
 /*====================================================================================================*/
 
 }
