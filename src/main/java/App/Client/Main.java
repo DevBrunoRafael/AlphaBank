@@ -1,24 +1,19 @@
 package App.Client;
 
-import App.Components.GeneratePDFs.FacadePDF;
-import App.Components.SendingEmails.FacadeEMAIL;
 import App.Entities.Accounts.Account;
-import App.Entities.Accounts.AccountTypes.CurrentAccount;
-import App.Entities.Accounts.AccountTypes.SavingsAccount;
-
-import java.text.NumberFormat;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
+        Intermediation inter = new Intermediation();
 
         boolean rd1 = true;
 
         while (rd1){
-            System.out.println("\n\tTECH BANK");
             System.out.println("""
+                     TECH BANK
+                     
             (1) Abrir conta
             (2) Acessar conta
             (3) Administrador
@@ -28,31 +23,24 @@ public class Main {
             switch (op1){
                 case "1" -> {
                     System.out.println("""
-                            \tTipo da conta
+                                  Tipo da conta
                             1- Poupança  2- Corrente""");
                     String op3 = scanner.nextLine();
 
-                    Account ac = null;
-                    switch (op3){
-                        case "1" -> ac = new SavingsAccount(MethodsAux.registerCustomer());
-                        case "2" -> ac = new CurrentAccount(MethodsAux.registerCustomer());
-
-                        default -> System.out.println("Opção Inválida!");
-                    }
-                    MethodsAux.insert(ac);
-                    System.out.println(ac);
+                    inter.registarCliente();
+                    inter.criarConta(op3);
                 }
                 case "2" -> {
                     System.out.print("Informe o número da conta: ");
                     String numAc = scanner.nextLine();
-                    Account ac = MethodsAux.select(numAc);
+                    Account account = inter.buscarConta(numAc);
 
-                    if(ac != null){
+                    if(account != null){
 
                         boolean rd2 = true;
                         while (rd2){
 
-                            System.out.println("Olá, " + ac.getClient().getName());
+                            System.out.println(" Olá, " + account.getClient().getName());
                             System.out.println("""
                             (1) Operações
                             (2) Alterar dados conta
@@ -72,31 +60,10 @@ public class Main {
                                         (4) Voltar""");
                                         String op3 = scanner.next();
 
-                                        switch (op3){
-                                            case "1" -> {
-                                                System.out.print("Valor: ");
-                                                double valor = scanner.nextDouble();
-                                                ac.deposit(valor);
-                                            }
-                                            case "2" -> {
-                                                System.out.print("Valor: ");
-                                                double valor = scanner.nextDouble();
-                                                ac.withdraw(valor);
-                                            }
-                                            case "3" -> {
-                                                scanner.nextLine();
-                                                System.out.print("Informe o destinatário: ");
-                                                String numAcc = scanner.nextLine();
-                                                Account dest = MethodsAux.select(numAcc);
-
-                                                if(dest != null){
-                                                    System.out.print("Valor: ");
-                                                    double valor = scanner.nextDouble();
-                                                    ac.transfer(dest,valor);
-
-                                                } else System.out.println("Destinatário não encontrado!");
-                                            }
-
+                                        switch (op3) {
+                                            case "1" -> inter.depositar();
+                                            case "2" -> inter.sacar();
+                                            case "3" -> inter.transferir();
                                             case "4" -> rd3 = false;
                                             default -> System.out.println("Opção inválida!");
                                         }
@@ -105,26 +72,23 @@ public class Main {
                                 case "2" ->
                                     System.out.println("Implementar...");
 
-                                case "3" -> {
-                                    Locale ptBr = new Locale("pt", "BR");
-                                    System.out.println("Saldo: " +
-                                                    NumberFormat.getCurrencyInstance(ptBr).format(ac.getBalance())
-                                            );
-                                }
+                                case "3" -> inter.consultarSaldo();
+
                                 case "4" -> {
                                     scanner.nextLine();
                                     System.out.println("1- imprimir     2- enviar por email");
                                     String op4 = scanner.nextLine();
 
                                     switch (op4){
-                                        case "1" -> new FacadePDF(ac);
-                                        case "2" -> new FacadeEMAIL().submitAt();
+                                        case "1" -> inter.gerarExtrato();
+                                        case "2" -> inter.enviarExtrato();
                                         default -> System.out.println("Opção inválida");
                                     }
                                 }
 
                                 case "5" -> {
                                     scanner.nextLine();
+                                    inter.registerLogs();
                                     rd2 = false;
                                 }
                                 default -> System.out.println("Opção inválida!");

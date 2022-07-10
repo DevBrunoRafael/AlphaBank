@@ -25,7 +25,7 @@ public class MainAux {
 //        new FacadePDF(ac);
 
         EmailConfig.fileLocation = new File(ConstantsPDF.directory("1508014-03"));
-        new FacadeEMAIL().submitAt();
+        //new FacadeEMAIL().submitAt();
 
     }
 }
